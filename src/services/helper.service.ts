@@ -6,9 +6,9 @@ export class HelperService {
 	id: any;
 	isAuthenticated:boolean;
 	loginRole:IRole;
-	SITE_URL2 = "http://192.168.40.5/UETDS/";
+	SITE_URL = "http://31.169.65.82:8665/";
 	SITE_URLEV = "http://192.168.1.28/UETDS/";
-	SITE_URL= "http://localhost/UETDS/";
+	SITE_URL2= "http://localhost/UETDS/";
 
 	async delay(ms: number) {
 		return new Promise(resolve => setTimeout(resolve, ms));
