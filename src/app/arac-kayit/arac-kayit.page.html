@@ -44,20 +44,20 @@
     </ion-select>
   </ion-item>
 
-    <ion-list>
-      <ion-item *ngFor="let property of AracKeys">
+    <ion-item>
+      <ion-label position="stacked">Araç Özellikleri</ion-label>
+    <ion-select>
+      <ion-select-option *ngFor="let property of AracKeys" value="property">
         <ng-container *ngIf="property=='CocukKoltugu'; else elseTemplate">
-          <ion-label>Çocuk Koltuğu</ion-label>
+          Çocuk Koltuğu
         </ng-container>
         <ng-template #elseTemplate>
-          
-          <ion-label>{{property}}</ion-label>
+            {{property}}
         </ng-template>
-        
-        <ion-checkbox slot="end" [(ngModel)]="Arac.AracOzellikleri[property]" name="property"></ion-checkbox>
-      </ion-item>
-    </ion-list>
-  
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
   <ion-item class="img-item">
     <p class="img_label">Önden Fotoğrafı</p>
     <ion-img #On [src]="this.helper.blankImage" (click)="this.changeImage(On,'On')"></ion-img>
