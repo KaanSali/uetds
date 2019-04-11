@@ -46,15 +46,15 @@
 
     <ion-item>
       <ion-label position="stacked">Araç Özellikleri</ion-label>
-    <ion-select multiple="true">
-      <ion-select-option *ngFor="let property of AracKeys" value="property">
+    <ion-select [(ngModel)]="Arac.AracOzellikleri" multiple="true">
+      <ng-container *ngFor="let property of AracKeys" >
         <ng-container *ngIf="property=='CocukKoltugu'; else elseTemplate">
-          Çocuk Koltuğu
+      <ion-select-option value="property">Çocuk Koltuğu</ion-select-option>
         </ng-container>
         <ng-template #elseTemplate>
-            {{property}}
+            <ion-select-option value="{{property}}">{{property}}</ion-select-option>
         </ng-template>
-      </ion-select-option>
+    </ng-container>
     </ion-select>
   </ion-item>
 
