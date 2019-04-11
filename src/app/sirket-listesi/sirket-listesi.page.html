@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button (click)="addPage()">Yeni Kayıt</ion-button> 
+        </ion-buttons>
+    <ion-title>Şirket Listesi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let Sirket of Sirketler" (click)="openModal(Sirket)">
+    <ion-card-header>
+      <ion-img style="height: 100px; border-radius: 20%!important;" src="{{this.helper.SITE_URL}}{{Sirket.Logo}}"></ion-img>
+      <ion-card-title>{{Sirket.Ad}}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

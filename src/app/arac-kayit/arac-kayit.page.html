@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Araç Kayıt</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <form #myForm="ngForm" (ngSubmit)="this.AracKaydet()">
+  <ion-item>
+    <ion-label position="stacked">Plakası</ion-label>
+    <ion-input [(ngModel)]="Arac.AracInfo.Plaka" name="Plaka" required></ion-input>
+  </ion-item>
+  <ion-item style="width: 40%; float:left;">
+      <ion-label position="stacked">Markası</ion-label>
+      <ion-input [(ngModel)]="Arac.AracInfo.Marka" name="marka" required></ion-input>
+    </ion-item>
+    <ion-item style="width: 40%; float:right;">
+      <ion-label position="stacked">Modeli</ion-label>
+      <ion-input [(ngModel)]="Arac.AracInfo.Model" name="model" required></ion-input>
+    </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Araç Türü</ion-label>
+    <ion-select [(ngModel)]="Arac.AracInfo.Turu" name="tur" required>
+      <ion-select-option value="VIP">VIP(9 Koltuk)</ion-select-option>
+      <ion-select-option value="MINI">MINI(19 Koltuk)</ion-select-option>
+      <ion-select-option value="MIDI">MIDI(31 Koltuk)</ion-select-option>
+      <ion-select-option value="BUS">BUS(54 Koltuk)</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Araç Yılı</ion-label>
+    <ion-input [(ngModel)]="Arac.AracInfo.Yili" name="yili" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Yakıtı</ion-label>
+    <ion-select [(ngModel)]="Arac.AracInfo.Yakit" name="yakit" required>
+      <ion-select-option value="Benzin">Benzin</ion-select-option>
+      <ion-select-option value="Dizel">Dizel</ion-select-option>
+      <ion-select-option value="Hybrid">Hybrid</ion-select-option>
+      <ion-select-option value="Elektrikli">Elektrikli</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+    <ion-list>
+      <ion-item *ngFor="let property of AracKeys">
+        <ng-container *ngIf="property=='CocukKoltugu'; else elseTemplate">
+          <ion-label>Çocuk Koltuğu</ion-label>
+        </ng-container>
+        <ng-template #elseTemplate>
+          
+          <ion-label>{{property}}</ion-label>
+        </ng-template>
+        
+        <ion-checkbox slot="end" [(ngModel)]="Arac.AracOzellikleri[property]" name="property"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  
+  <ion-item class="img-item">
+    <p class="img_label">Önden Fotoğrafı</p>
+    <ion-img #On [src]="this.helper.blankImage" (click)="this.changeImage(On,'On')"></ion-img>
+  </ion-item>
+  <ion-item class="img-item">
+    <p class="img_label">Arkadan Fotoğrafı</p>
+    <ion-img #Arka [src]="this.helper.blankImage" (click)="this.changeImage(Arka,'Arka')"></ion-img>
+  </ion-item>
+  <ion-item class="img-item">
+    <p class="img_label">Sağdan Fotoğrafı</p>
+    <ion-img #Sag [src]="this.helper.blankImage" (click)="this.changeImage(Sag,'Sag')"></ion-img>
+  </ion-item>
+  <ion-item class="img-item">
+    <p class="img_label">Soldan Fotoğrafı</p>
+    <ion-img #Sol [src]="this.helper.blankImage" (click)="this.changeImage(Sol,'Sol')"></ion-img>
+  </ion-item>
+  <ion-item class="img-item">
+    <p class="img_label">İç Mekan Fotoğrafı</p>
+    <ion-img #IcMekan [src]="this.helper.blankImage" (click)="this.changeImage(IcMekan,'IcMekan')"></ion-img>
+  </ion-item>
+  <ion-item class="img-item">
+    <p class="img_label">Sigorta Poliçesi</p>
+    <ion-img #SigortaPolice [src]="this.helper.blankImage" (click)="this.changeImage(SigortaPolice,'SigortaPolice')"></ion-img>
+  </ion-item>
+  <ion-item class="img-item">
+    <p class="img_label">Ruhsatı</p>
+    <ion-img #Ruhsat [src]="this.helper.blankImage" (click)="this.changeImage(Ruhsat,'Ruhsat')"></ion-img>
+  </ion-item>
+  <ion-button [disabled]="!myForm.form.valid" type="submit" expand="block" name="submit">Kayıt Ol</ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button (click)="addPage()">Yeni Kayıt</ion-button> 
+        </ion-buttons>
+    <ion-title>Personal Listesi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-card *ngFor="let Personel of Personels" (click)="openModal(Personel)">
+  <ion-card-header>
+    <ion-img style="height: 100px; border-radius: 20%!important; margin-right: 10px;" src="{{this.helper.SITE_URL}}{{Personel.PersonelFotograflari.ProfilFoto}}"></ion-img>
+    <ion-card-title>{{Personel.PersonalInfo.Ad}} {{Personel.PersonalInfo.Soyad}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <p>Uyruğu = {{Personel.PersonalInfo.Uyruk}}</p>
+    <p>Cinsiyet = {{Personel.PersonalInfo.Cinsiyet}}</p>
+    <p>Personel Türü = {{Personel.Role.RoleName}}</p>
+   <!-- <p *ngIf="Personel.PersonelWorkInfo.Aktiflik">Aktif</p>
+    <p *ngIf="!Personel.PersonelWorkInfo.Aktiflik">Deaktif</p> -->
+  </ion-card-content>
+</ion-card>
+</ion-content>

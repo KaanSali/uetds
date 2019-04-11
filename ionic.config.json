@@ -1,5 +1,8 @@
 {
   "name": "UEDTS",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
   "type": "angular"
 }
