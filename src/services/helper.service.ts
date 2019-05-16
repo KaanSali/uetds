@@ -6,7 +6,7 @@ export class HelperService {
 	id: any;
 	isAuthenticated:boolean;
 	loginRole:IRole;
-	SITE_URL = "http://31.169.65.82:8665/";
+	SITE_URL = "http://31.169.71.253:8665/";
 	SITE_URLEV = "http://192.168.1.28/UETDS/";
 	SITE_URL2= "http://localhost/UETDS/";
 
