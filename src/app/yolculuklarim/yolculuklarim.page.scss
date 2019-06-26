@@ -1,0 +1,44 @@
+ion-card{
+    //--background: #c8c8c830;
+    --background: #f1f1f1;
+    overflow: initial;
+    --border-radius: 15px;
+margin-bottom:27px;
+box-shadow: 0 4px 8px rgba(0,0,0,.12);
+
+}
+
+.time_Label{
+    width: fit-content;
+      padding: 4px 5px;
+      border-radius: 11.5px;
+      background: white;
+      position: relative;
+      align-self: center;
+      margin: 0px;
+      top: -11.5px;
+      color: #7f1956;
+}
+
+.B_icon{
+    padding:3px;
+    border-radius: 50%;
+    background: white;
+    color: #b61877;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+ion-label{
+margin-bottom:0px;
+font-family: calibri;
+}
+
+.history_item{
+    --background:#f1f1f1;
+    --border-radius: 15px;
+    --min-height:25px;
+    color: #8a8a8a;
+    font-weight: bold;
+    font-family: calibri;
+}

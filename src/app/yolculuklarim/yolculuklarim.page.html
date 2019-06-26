@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button><ion-icon name="menu"></ion-icon></ion-menu-button>
+        </ion-buttons>
+          <!-- <ion-searchbar placeholder="Personeller'de Ara"></ion-searchbar> -->
+          
+          <ion-title>Yolculuklarım</ion-title>
+         
+    </ion-toolbar>
+  </ion-header>
+<ion-content padding>
+
+
+      
+<ion-item class="history_item" lines="none" text-center>
+  <ion-label style="margin: 5px 8px 5px 0px;">11.07.2019</ion-label>
+</ion-item>
+
+<!-- ---------------------------------------- -->
+
+<ion-card lines="none" text-center *ngFor="let item of [].constructor(9)">
+
+  <ion-label class="time_Label"  position="stacked" >15:30 - 17:30</ion-label>
+
+  <ion-grid>
+<ion-row>
+  <ion-col>
+      <ion-row >
+          <ion-icon class="B_icon" name="pin"></ion-icon>  
+          <ion-label position="stacked">TAKSİM - KARTAL</ion-label> 
+      </ion-row>
+        
+      <ion-row style="margin-top:10px;">
+          <ion-icon class="B_icon" ios="ios-cash" md="md-cash"></ion-icon> 
+          <ion-label position="stacked">400 TL</ion-label>
+      </ion-row>
+  </ion-col>
+
+  <ion-col style="text-align: right; max-width: 20px; padding: 0px;">
+      <ion-icon size="small" name="arrow-forward" style="margin-top: 2.5vh;"></ion-icon>
+  </ion-col>
+</ion-row>
+  </ion-grid>
+</ion-card>
+
+<!-- ---------------------------------------- -->
+
+</ion-content>
