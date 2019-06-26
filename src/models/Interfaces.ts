@@ -1,26 +1,22 @@
-interface PersonalInfo {
-	Ad: string,
-	Soyad: string,
-	Uyruk: string,
-	KimlikNo: string,
-	Cinsiyet: string,
-	Telefon: string,
-	Email: string,
-	Sifre: string
-}
-
-interface PersonelWorkInfo {
-	Aktiflik: boolean,
-}
-
-interface PersonelFotograflari {
-	ProfilFoto: string,
-	Ehliyet: string,
-	SrcBelgesi: string,
-	Psikoteknik: string,
-	SabikaKaydi: string
-}
-export class Company {
+export class Personel {
+		Id: number = 0;
+		Ad: string = "";
+		Soyad: string = "";
+		Cinsiyet: string = "";
+		Email: string = "";
+		KimlikNo: string = "";
+		Sifre: string = "";
+		Telefon: string = "";
+		Uyruk: string = "";
+		Ehliyet: string = "";
+		ProfilFoto: string = "";
+		Psikoteknik: string = "";
+		SabikaKaydi: string = "";
+		SrcBelgesi: string = "";
+		Aktiflik: boolean = true ;
+	
+};
+export class Sirket {
 	Ad: string = "";
 	Yetkili: Personel = new Personel();
 	Email: string = "";
@@ -45,36 +41,6 @@ export interface LoginData {
 	Sifre: string,
 }
 
-export class Personel {
-	Id:any;
-	Role: IRole = new BlankRole();
-	PersonalInfo: PersonalInfo = {
-		Ad: "",
-		Soyad: "",
-		Cinsiyet: "",
-		Email: "",
-		KimlikNo: "",
-		Sifre: "",
-		Telefon: "",
-		Uyruk: ""
-	};
-	PersonelWorkInfo: PersonelWorkInfo = {
-		Aktiflik: true
-	};
-	PersonelFotograflari: PersonelFotograflari = {
-		Ehliyet: "",
-		ProfilFoto: "",
-		Psikoteknik: "",
-		SabikaKaydi: "",
-		SrcBelgesi: ""
-	};
-	KonustuguDiller: string[] = [];
-};
-
-export interface LoginData {
-	KimlikNo: string,
-	Sifre: string
-}
 //------------Roller-----------------
 export interface IRole {
 	RoleName: string,
