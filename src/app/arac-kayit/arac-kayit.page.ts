@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Arac } from 'src/models/Interfaces';
+import { Arac } from 'src/models/Models';
 import { HelperService } from 'src/services/helper.service';
 import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
 import { ApiModel } from 'src/services/api/api.model';
@@ -11,12 +11,7 @@ import { ApiModel } from 'src/services/api/api.model';
 })
 export class AracKayitPage implements OnInit {
   Arac:Arac = new Arac();
-  cameraOptions:CameraOptions={
-    destinationType:0,
-    sourceType:0,
-    allowEdit:true
-  }
-  AracKeys= Object.keys(this.Arac.AracOzellikleri);
+
   constructor(public helper:HelperService,public camera:Camera,public apimodel:ApiModel) { }
 
   ngOnInit() {
@@ -24,17 +19,16 @@ export class AracKayitPage implements OnInit {
   }
 
   changeImage(imageHolder:HTMLIonImgElement,photoVar:string){
-    this.camera.getPicture(this.cameraOptions).then((imageData)=>{
+    this.camera.getPicture(this.helper.cameraOptions).then((imageData)=>{
       let base64Image = 'data:image/jpeg;base64,' + imageData;
      imageHolder.src = base64Image;
-     this.Arac['AracFotograflari'][photoVar] = imageData;
+     this.Arac[photoVar] = imageData;
     },(err)=>{
       alert(err);
     })
   }
   AracKaydet(){
-    var fotolar = this.Arac.AracFotograflari;
-    if(fotolar.Arka !="" || fotolar.IcMekan != "" || fotolar.On != "" || fotolar.Ruhsat != "" || fotolar.Sag != "" || fotolar.SigortaPolice != "" || fotolar.Sol != ""){
+    if(this.Arac.Arka !="" || this.Arac.IcMekan != "" || this.Arac.On != "" || this.Arac.Ruhsat != "" || this.Arac.Sag != "" || this.Arac.SigortaPolice != "" || this.Arac.Sol != ""){
     this.apimodel.addArac(this.Arac).subscribe((data =>{
       alert(data);
     }), (error) => {

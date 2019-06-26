@@ -4,12 +4,64 @@ ion-img{
         border-radius: 30%;
     }
 }
-
 p{
     font-size: 4vw;
     text-align: center;
 }
 
+.personal_img{
+    border-radius: 50%;
+}
+
 ion-card-title{
     text-align: center;
 }
+/*
+.personel_ekle_Bt{
+   background: #e31e27;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    //border: 3px solid #c5c5c5; 
+    color: #ffffff;
+    font-size: xx-large;
+
+}
+*/
+
+ion-item{
+    ion-icon{
+    color: #c8c8c8; }
+    ion-label{
+        color: #138e85;
+        font-family: calibri;
+        font-size: 15pt;
+        font-weight: 400;
+    }
+}
+   
+    ion-fab-button{
+      height: 54px;
+      width: 54px;
+      font-size: xx-large;
+  }
+
+  .item ion-thumbnail {
+    min-width: 65px;    
+    min-height: 65px;
+    margin:10px 10px 10px -6px;
+    ion-img {
+        max-width: 100% !important;    
+        max-height: 100% !important;
+    }
+}
+
+ion-card{border-radius: 12px;}
+
+ion-card-subtitle{
+    margin-bottom: 0px;
+    font-family: calibri;
+    font-size: 11pt;
+    color: #505050;
+}
+

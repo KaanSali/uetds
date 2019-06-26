@@ -1,0 +1,24 @@
+ion-input,ion-select{
+    border-radius:12px;
+    border: 2px solid lightgray;
+    padding-left:8px !important; 
+    min-height: 45px;
+    align-items: center;
+    }
+    
+    ion-item{--padding-start:8px;}
+      ion-item ion-label{
+        color: #53bebe;
+        font-size: 12.5pt;
+        font-weight: bold;
+        font-family: 'Calibri';
+        position: relative;
+        top:13px;
+        left:10px;
+        background: #ffffff;
+        z-index: 3;
+        width: fit-content;
+        margin-top: 0px;
+        pre{margin: 0px;}
+      }
+

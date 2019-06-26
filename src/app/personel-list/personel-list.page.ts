@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Personel } from 'src/models/Interfaces';
+import { Personel } from 'src/models/Models';
 import { ApiModel } from 'src/services/api/api.model';
 import { ModalController } from '@ionic/angular';
 import { ModalOptions } from '@ionic/core';
@@ -22,13 +22,13 @@ export class PersonelListPage{
 
   async ionViewWillEnter(){
     this.apimodel.getPersonelList().subscribe(data =>{
-      this.Personels = data;
+      this.Personels = data["Details"];
       console.log(data);
     });
   }
 
   async openModal(personel:Personel){
-    this.ModalOptions.componentProps={Personel:personel};
+    this.ModalOptions.componentProps={personelId:personel.ID};
     const myModal = await this.modal.create(this.ModalOptions);
     return await myModal.present();
   }

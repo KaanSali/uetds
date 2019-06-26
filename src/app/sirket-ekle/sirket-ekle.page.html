@@ -8,72 +8,89 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-label position="stacked">Adı</ion-label>
-    <ion-input [(ngModel)]="Sirket.Ad"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Yetkilisi</ion-label>
-    <ion-select [(ngModel)]="Sirket.Yetkili">
-      <ion-select-option *ngFor="let yetkili of YetkiliList" [value]=yetkili>{{yetkili.PersonalInfo.Ad}} {{yetkili.PersonalInfo.Soyad}}</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Logosu</ion-label>
-    <ion-img #Logo [src]="this.helper.blankImage" (click)="this.changeImage(Logo,'Logo')"></ion-img>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Şirket Adresi</ion-label>
-    <ion-input [(ngModel)]="Sirket.Adresi"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Email Adresi</ion-label>
-    <ion-input [(ngModel)]="Sirket.Email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Telefon Numarası</ion-label>
-    <ion-input [(ngModel)]="Sirket.Telefon"></ion-input>
+    <form #myForm="ngForm" (ngSubmit)="KayitOl()">
+  <ion-item lines="none">
+    <ion-label position="stacked">Adı :</ion-label>
+    <ion-input [(ngModel)]="Sirket.Ad" name="ad" required></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label position="stacked">B2D2Belge Numarası</ion-label>
-    <ion-input [(ngModel)]="Sirket.B2D2BelgeNo"></ion-input>
+  <ion-item lines="none">
+    <ion-label position="stacked">Yetkilisi :</ion-label>
+    <ion-select [(ngModel)]="Sirket.Yetkili_Id" [placeholder]="SirketYetkilisi" name="yetkili" required>
+      <ion-select-option *ngFor="let yetkili of YetkiliList[0]" value="{{yetkili.ID}}">{{yetkili.Adi}} {{yetkili.Soyadi}}</ion-select-option>
+    </ion-select>
   </ion-item>
-  <ion-item>
-    <ion-label position="stacked">B2D2 Ticari Ünvanı</ion-label>
-    <ion-input [(ngModel)]="Sirket.B2D2TicariUnvani"></ion-input>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">Logosu :</ion-label>
+    <ion-img #Logo [src]="Sirket.Logo" (click)="this.changeImage(Logo,'Logo')"></ion-img>
   </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Vergi Dairesi</ion-label>
-    <ion-input [(ngModel)]="Sirket.VergiDairesi"></ion-input>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">Şirket Adresi :</ion-label>
+    <ion-input [(ngModel)]="Sirket.Adresi" required name="adres"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Vergi Numarası</ion-label>
-    <ion-input [(ngModel)]="Sirket.VergiNo"></ion-input>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">Email Adresi :</ion-label>
+    <ion-input [(ngModel)]="Sirket.Email" required name="email"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Iban Sahibi</ion-label>
-    <ion-input [(ngModel)]="Sirket.IbanSahibi"></ion-input>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">Telefon Numarası :</ion-label>
+    <ion-input [(ngModel)]="Sirket.Telefon" required name="telefon"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Iban Numarası</ion-label>
-    <ion-input [(ngModel)]="Sirket.IBanNo"></ion-input>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">B2D2 Belge Numarası :</ion-label>
+    <ion-input [(ngModel)]="Sirket.B2D2BelgeNo" required name="b2d2no"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Seyahat Acentesi Ünvanı</ion-label>
-    <ion-input [(ngModel)]="Sirket.SeyahatAcentasiUnvani"></ion-input>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">B2D2 Ticari Ünvanı :</ion-label>
+    <ion-input [(ngModel)]="Sirket.B2D2TicariUnvani" required name="b2d2unvan"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Seyahat Acentesi Numarası</ion-label>
-    <ion-input [(ngModel)]="Sirket.SeyahatAcentasiNo"></ion-input>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">Vergi Dairesi :</ion-label>
+    <ion-input [(ngModel)]="Sirket.VergiDairesi" required name="vergidairesi"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label position="stacked">UETDS Kullanıcı Adı</ion-label>
-    <ion-input [(ngModel)]="Sirket.UETDSAdi"></ion-input>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">Vergi Numarası :</ion-label>
+    <ion-input [(ngModel)]="Sirket.VergiNo" required name="vergino"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label position="stacked">UETDS Şifresi</ion-label>
-    <ion-input [(ngModel)]="Sirket.UETDSSifre"></ion-input>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">Iban Sahibi :</ion-label>
+    <ion-input [(ngModel)]="Sirket.IbanSahibi" required name="ibansahibi"></ion-input>
   </ion-item>
-  <ion-button (click)="this.KayitOl()">Kayıt Ol</ion-button>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">Iban Numarası :</ion-label>
+    <ion-input [(ngModel)]="Sirket.IbanNo" required name="ibanno"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">Seyahat Acentesi Ünvanı :</ion-label>
+    <ion-input [(ngModel)]="Sirket.SeyahatAcentasiUnvani" required name="acenteunvani"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">Seyahat Acentesi Numarası :</ion-label>
+    <ion-input [(ngModel)]="Sirket.SeyahatAcentasiNo" required name="acenteno"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">UETDS Kullanıcı Adı :</ion-label>
+    <ion-input [(ngModel)]="Sirket.UETDSAdi" required name="uetdsid"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">UETDS Şifresi :</ion-label>
+    <ion-input [(ngModel)]="Sirket.UETDSSifre" required name="uetdssifre"></ion-input>
+  </ion-item>
+
+  <ion-button class="Save_Bt" type="submit" expand="block" name="submit">Kaydet</ion-button>
+</form>
 </ion-content>
