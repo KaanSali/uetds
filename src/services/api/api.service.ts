@@ -30,4 +30,26 @@ export class ApiService {
       })
     );
   }
+
+  updateMethods(url:any, data: any): Observable<Response>{
+    let headers = new HttpHeaders();
+    headers.append("Content-Type", "application/json;");
+    headers.append("Access-Control-Allow-Methods:","*");
+    return this.http.put(`${url}`, data, {headers:headers}).pipe(
+      map((res: Response) => {
+        return res;
+      })
+    );
+  }
+
+  deleteMethods(url:any): Observable<Response> {
+    let headers = new HttpHeaders();
+    headers.append("Content-Type", "application/json");
+
+    return this.http.delete(`${url}`).pipe(
+      map((res: Response) => {
+        return res;
+      })
+    );
+  }
 }

@@ -1,82 +1,138 @@
 <ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start">
-    <ion-button (click)="closeModal()">Geri</ion-button>
-    </ion-buttons>
-    <ion-title>{{Personel.PersonalInfo.Ad}} {{Personel.PersonalInfo.Soyad}}</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
+    <ion-toolbar>
+        <ion-buttons class="Back_Bt" slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon size="small" name="arrow-back"></ion-icon>
+      </ion-button>
+      </ion-buttons>
+      <ion-title>{{Personel.PersonalInfo.Ad}} {{Personel.PersonalInfo.Soyad}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
     <form #myForm="ngForm" (ngSubmit)="this.KayitOl()">
-    <ion-item>
-      <ion-label position="stacked">Adı</ion-label>
-      <ion-input [(ngModel)]="Personel.PersonalInfo.Ad" required name="ad"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Soyadı</ion-label>
-      <ion-input [(ngModel)]="Personel.PersonalInfo.Soyad" required name="soyad"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Uyruğu</ion-label>
-      <ion-input [(ngModel)]="Personel.PersonalInfo.Uyruk" required name="uyruk"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Kimlik Numarası</ion-label>
-      <ion-input [(ngModel)]="Personel.PersonalInfo.KimlikNo" maxlength=11 minlength=11 required name="kimlik"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Şifresi</ion-label>
-      <ion-input [(ngModel)]="Personel.PersonalInfo.Sifre" type="password" required name="sifre"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Cinsiyeti</ion-label>
-      <ion-select [(ngModel)]="Personel.PersonalInfo.Cinsiyet" name="cinsiyet" value="Erkek">
-        <ion-select-option value="Erkek">Erkek</ion-select-option>
-        <ion-select-option value="Kadın">Kadın</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Personel Türü</ion-label>
-      <ion-select [(ngModel)]="RoleString" value="Şoför" name="tur">
-        <ion-select-option value="Şoför">Şoför</ion-select-option>
-        <ion-select-option value="Yönetici">Yönetici</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Telefon Numarası</ion-label>
-      <ion-input [(ngModel)]="Personel.PersonalInfo.Telefon" required name="telefon"></ion-input>
-    </ion-item>
-      <ion-item>
-        <ion-label position="stacked">Email Adresi</ion-label>
+      <ion-item lines="none" style="text-align: center;"><ion-label>Profil Fotoğrafı</ion-label></ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col col-auto>
+            <ion-item class="img-item" lines="none">
+              <!-- <p class="img_label">Profil Fotoğrafı</p> -->
+              <ion-img #ProfilFoto [src]="this.helper.SITE_URL+Personel.PersonelFotograflari.ProfilFoto" (click)="this.changeImage(ProfilFoto,'ProfilFoto')" name="pp"></ion-img>
+            </ion-item>  
+          </ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+      </ion-grid>    
+  
+      <ion-item lines="none">
+        <ion-label position="stacked">Adı :</ion-label>
+        <ion-input [(ngModel)]="Personel.PersonalInfo.Ad" required name="ad"></ion-input>
+      </ion-item>
+  
+      <ion-item lines="none">
+        <ion-label position="stacked">Soyadı :</ion-label>
+        <ion-input [(ngModel)]="Personel.PersonalInfo.Soyad" required name="soyad"></ion-input>
+      </ion-item>
+  
+      <ion-item lines="none">
+        <ion-label position="stacked">Uyruğu :</ion-label>
+        <ion-input [(ngModel)]="Personel.PersonalInfo.Uyruk" required name="uyruk"></ion-input>
+      </ion-item>
+  
+      <ion-item lines="none">
+        <ion-label position="stacked">Kimlik Numarası :</ion-label>
+        <ion-input [(ngModel)]="Personel.PersonalInfo.KimlikNo" maxlength=11 minlength=11 required name="kimlik"></ion-input>
+      </ion-item>
+  
+      <ion-item lines="none">
+        <ion-label position="stacked">Şifresi :</ion-label>
+        <ion-input [(ngModel)]="Personel.PersonalInfo.Sifre" type="password" required name="sifre"></ion-input>
+      </ion-item>
+  
+      <ion-item lines="none">
+        <ion-label position="stacked">Cinsiyeti :</ion-label>
+        <ion-select [(ngModel)]="Personel.PersonalInfo.Cinsiyet" name="cinsiyet" value="Erkek">
+          <ion-select-option value="Erkek">Erkek</ion-select-option>
+          <ion-select-option value="Kadın">Kadın</ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+      <ion-item lines="none">
+        <ion-label position="stacked">Personel Türü :</ion-label>
+        <ion-select [(ngModel)]="RoleString" name="tur">
+          <ion-select-option value="Şoför">Şoför</ion-select-option>
+          <ion-select-option value="Yönetici">Yönetici</ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+      <ion-item lines="none">
+        <ion-label position="stacked">Telefon Numarası :</ion-label>
+        <ion-input [(ngModel)]="Personel.PersonalInfo.Telefon" required name="telefon"></ion-input>
+      </ion-item>
+  
+      <ion-item lines="none">
+        <ion-label position="stacked">Email Adresi :</ion-label>
         <ion-input [(ngModel)]="Personel.PersonalInfo.Email" type="email" required name="email"></ion-input>
       </ion-item>
-      <ion-item>
-      <ion-label position="stacked">Konuştuğu Diller</ion-label>
-      <ion-select multiple="true" [(ngModel)]="Personel.KonustuguDiller" name="diller" required>
-        <ion-select-option *ngFor="let dil of DilListesi" value="{{dil}}">{{dil}}</ion-select-option>
-      </ion-select>
-    </ion-item>
-      <ion-item class="img-item">
-        <p class="img_label">Profil Fotoğrafı</p>
-        <ion-img #ProfilFoto [src]="this.helper.SITE_URL+Personel.PersonelFotograflari.ProfilFoto" (click)="this.changeImage(ProfilFoto,'ProfilFoto')" name="pp"></ion-img>
-      </ion-item>
-      <ion-item class="img-item">
-          <p class="img_label">Ehliyet Fotoğrafı</p>
-      <ion-img #Ehliyet [src]="this.helper.SITE_URL+Personel.PersonelFotograflari.Ehliyet" (click)="this.changeImage(Ehliyet,'Ehliyet')" name="ehliyet"></ion-img>
-    </ion-item>
-    <ion-item class="img-item">
-        <p class="img_label">Src Belgesi</p>
-      <ion-img #SrcBelgesi [src]="this.helper.SITE_URL + Personel.PersonelFotograflari.SrcBelgesi" (click)="this.changeImage(SrcBelgesi,'SrcBelgesi')" name="src"></ion-img>
-    </ion-item>
-    <ion-item class="img-item">
-        <p class="img_label">Psikoteknik Belgesi</p>
-      <ion-img #Psikoteknik [src]="this.helper.SITE_URL +Personel.PersonelFotograflari.Psikoteknik" (click)="this.changeImage(Psikoteknik,'Psikoteknik')" name="psiko"></ion-img>
-      </ion-item>
-      <ion-item class="img-item">
-        <p class="img_label">Sabıka Kaydı</p>
-      <ion-img #SabikaKaydi [src]="this.helper.SITE_URL+Personel.PersonelFotograflari.SabikaKaydi" (click)="this.changeImage(SabikaKaydi,'SabikaKaydi')" name="sabika"></ion-img>
-      </ion-item>
-      <ion-button [disabled]="!myForm.form.valid" type="submit" expand="block" name="submit">Kayıt Ol</ion-button>
+  
+      <ion-item lines="none">
+        <ion-label position="stacked">Konuştuğu Diller :</ion-label>
+        <ion-select multiple="true" [(ngModel)]="Personel.KonustuguDiller" name="diller" required>
+            <ion-select-option *ngFor="let dil of helper.DilListesi" value="{{dil}}">{{dil}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      <ion-grid no-padding style="padding-top: 14px;">
+        <ion-row>
+          <ion-col class="PK_Doc_Label">
+            <ion-label> Ehliyet Fotoğrafı</ion-label>
+          </ion-col>
+          <ion-col class="PK_Doc_Label">
+            <ion-label> SRC Belgesi</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+              <ion-item class="img-item" lines="none">
+                  <!-- <p class="img_label">Ehliyet Fotoğrafı</p> -->
+                <ion-img #Ehliyet [src]="this.helper.SITE_URL+Personel.PersonelFotograflari.Ehliyet" (click)="this.changeImage(Ehliyet,'Ehliyet')" name="ehliyet"></ion-img>
+              </ion-item>
+          </ion-col>
+          <ion-col size="6">
+              <ion-item class="img-item" lines="none">
+                  <!-- <p class="img_label">Src Belgesi</p> -->
+                <ion-img #SrcBelgesi [src]="this.helper.SITE_URL + Personel.PersonelFotograflari.SrcBelgesi" (click)="this.changeImage(SrcBelgesi,'SrcBelgesi')" name="src"></ion-img>
+              </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+        
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col class="PK_Doc_Label">
+            <ion-label>Psikoteknik</ion-label>
+          </ion-col>
+          <ion-col class="PK_Doc_Label">
+            <ion-label>Sabıka Kaydı</ion-label>
+          </ion-col>
+        </ion-row>    
+        <ion-row>
+          <ion-col size="6">
+              <ion-item class="img-item" lines="none">
+                  <!-- <p class="img_label">Psikoteknik Belgesi</p> -->
+                <ion-img #Psikoteknik [src]="this.helper.SITE_URL +Personel.PersonelFotograflari.Psikoteknik" (click)="this.changeImage(Psikoteknik,'Psikoteknik')" name="psiko"></ion-img>
+              </ion-item>
+          </ion-col>
+          <ion-col size="6">
+              <ion-item class="img-item" lines="none">
+                  <!-- <p class="img_label">Sabıka Kaydı</p> -->
+                <ion-img #SabikaKaydi [src]="this.helper.SITE_URL + Personel.PersonelFotograflari.SrcBelgesi" (click)="this.changeImage(SabikaKaydi,'SabikaKaydi')" name="sabika"></ion-img>
+              </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  
+      <ion-button class="Save_Bt" [disabled]="!myForm.form.valid" type="submit" expand="block" name="submit">Değişikleri Kaydet</ion-button>
     </form>
   </ion-content>
+  

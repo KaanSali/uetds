@@ -1,5 +1,5 @@
 import { ApiModel } from 'src/services/api/api.model';
-import { Sirket } from 'src/models/Models';
+import { Sirket } from 'src/models/Interfaces';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -47,7 +47,7 @@ export class MenuList{
 
     async loadSubmenu(subMenu:Array<{}>){
       this.apimodel.getSirketList().subscribe((data => {
-        this.Sirketler = data["Details"];
+        this.Sirketler = data;
         this.appender(subMenu);
       }),error => {
         alert(error);

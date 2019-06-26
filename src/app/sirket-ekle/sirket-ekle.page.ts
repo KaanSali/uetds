@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Company,Personel } from 'src/models/Interfaces';
+import { Sirket,Personel } from 'src/models/Interfaces';
 import { ApiModel } from 'src/services/api/api.model';
 import { HelperService } from 'src/services/helper.service';
 import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
@@ -10,7 +10,7 @@ import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
   styleUrls: ['./sirket-ekle.page.scss'],
 })
 export class SirketEklePage {
-  Sirket:Company = new Company();
+  Sirket:Sirket = new Sirket();
   YetkiliList:Personel[] = [];
   cameraOptions:CameraOptions={
     destinationType:0,
@@ -39,7 +39,7 @@ export class SirketEklePage {
   KayitOl(){
     console.log((typeof this.Sirket.Yetkili.Id));
 
-    this.apimodel.addCompany(this.Sirket).subscribe((data =>{
+    this.apimodel.addSirket(this.Sirket).subscribe((data =>{
       alert(data);
     }), (error) => {
       console.log(error);

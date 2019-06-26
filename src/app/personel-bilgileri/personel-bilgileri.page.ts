@@ -12,12 +12,6 @@ import { HelperService } from 'src/services/helper.service';
 })
 export class PersonelBilgileriPage {
   Personel:Personel = new Personel();
-  DilListesi=[
-    "Türkçe",
-    "İngilizce",
-    "Arapça",
-    "Almanca"
-]
   RoleString:string;
 
   cameraOptions:CameraOptions={
@@ -30,6 +24,7 @@ export class PersonelBilgileriPage {
 
   ionViewWillEnter() {
     this.Personel = this.navParams.get('Personel');
+    this.RoleString = this.Personel.Role.RoleName;
   }
   closeModal(){
     this.modal.dismiss();

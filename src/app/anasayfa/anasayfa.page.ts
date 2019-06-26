@@ -86,7 +86,7 @@ export class AnasayfaPage implements OnInit {
       component : PopoverComponent,
       event:ev,
       translucent: true
-    });
+    }); 
     popSefer.present();
   }
 

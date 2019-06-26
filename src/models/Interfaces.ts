@@ -1,22 +1,27 @@
-export class Personel {
-		Id: number = 0;
-		Ad: string = "";
-		Soyad: string = "";
-		Cinsiyet: string = "";
-		Email: string = "";
-		KimlikNo: string = "";
-		Sifre: string = "";
-		Telefon: string = "";
-		Uyruk: string = "";
-		Ehliyet: string = "";
-		ProfilFoto: string = "";
-		Psikoteknik: string = "";
-		SabikaKaydi: string = "";
-		SrcBelgesi: string = "";
-		Aktiflik: boolean = true ;
-	
-};
+interface PersonalInfo {
+	Ad: string,
+	Soyad: string,
+	Uyruk: string,
+	KimlikNo: string,
+	Cinsiyet: string,
+	Telefon: string,
+	Email: string,
+	Sifre: string
+}
+
+interface PersonelWorkInfo {
+	Aktiflik: boolean,
+}
+
+interface PersonelFotograflari {
+	ProfilFoto: string,
+	Ehliyet: string,
+	SrcBelgesi: string,
+	Psikoteknik: string,
+	SabikaKaydi: string
+}
 export class Sirket {
+	Id : any;
 	Ad: string = "";
 	Yetkili: Personel = new Personel();
 	Email: string = "";
