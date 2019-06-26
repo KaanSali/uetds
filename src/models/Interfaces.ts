@@ -46,6 +46,36 @@ export interface LoginData {
 	Sifre: string,
 }
 
+export class Personel {
+	Id:any;
+	Role: IRole = new BlankRole();
+	PersonalInfo: PersonalInfo = {
+		Ad: "",
+		Soyad: "",
+		Cinsiyet: "",
+		Email: "",
+		KimlikNo: "",
+		Sifre: "",
+		Telefon: "",
+		Uyruk: ""
+	};
+	PersonelWorkInfo: PersonelWorkInfo = {
+		Aktiflik: true
+	};
+	PersonelFotograflari: PersonelFotograflari = {
+		Ehliyet: "",
+		ProfilFoto: "",
+		Psikoteknik: "",
+		SabikaKaydi: "",
+		SrcBelgesi: ""
+	};
+	KonustuguDiller: string[] = [];
+};
+
+export interface LoginData {
+	KimlikNo: string,
+	Sifre: string
+}
 //------------Roller-----------------
 export interface IRole {
 	RoleName: string,
