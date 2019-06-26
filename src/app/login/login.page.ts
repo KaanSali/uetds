@@ -41,6 +41,14 @@ export class LoginPage {
         });
         
         this.helper.isAuthenticated = true;
+        this.lss.loginsession.getItem('CUN').then((value) =>{
+          var newValue = JSON.stringify(value).replace('"','');
+          this.helper.CurrentUserName = newValue.replace('"','');
+        });
+        this.lss.loginsession.getItem('CUP').then((value) =>{
+          var newValue = JSON.stringify(value).replace('"','');
+          this.helper.CurrentUserPic = newValue.replace('"','');
+        });
       }
     })
     if (this.helper.isAuthenticated) {
@@ -60,7 +68,10 @@ export class LoginPage {
         this.lss.loginsession.setItem("password", this.loginData.Sifre);
         this.lss.loginsession.setItem("isLoggedin",true);
         this.helper.isAuthenticated = true;
-        
+        this.helper.CurrentUserName = data["Result"][2]["_value"][0]["_value"] + " " + data["Result"][2]["_value"][1]["_value"];
+        this.helper.CurrentUserPic = data["Result"][5]["_value"][0]["_value"];
+        this.lss.loginsession.setItem("CUN",this.helper.CurrentUserName);
+        this.lss.loginsession.setItem("CUP",this.helper.CurrentUserPic);
         this.menulist.loggedInMenu =[];
         this.menulist.loggedInMenu.push(this.menulist.YolcuKaydi);
         this.menulist.loggedInMenu.push(this.menulist.PersonelListesi);   
