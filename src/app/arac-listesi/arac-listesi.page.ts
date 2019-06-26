@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Arac } from 'src/models/Models';
+import { Arac } from 'src/models/Interfaces';
 import { ApiModel } from 'src/services/api/api.model';
 import { AracBilgileriPage } from '../arac-bilgileri/arac-bilgileri.page';
 import { ModalOptions } from '@ionic/core';
@@ -22,7 +22,7 @@ export class AracListesiPage {
 
   ionViewWillEnter() {
     this.apimodel.getAracList().subscribe((data => {
-      this.Araclar = data["Details"];
+      this.Araclar = data;
     }),error => {
       alert(error);
     })

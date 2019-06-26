@@ -1,50 +1,27 @@
-<!------------------------------------------------------>
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button><ion-icon name="menu"></ion-icon></ion-menu-button>
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button style="height: 50px; width:50px; background:transparent;"></ion-button>
-    </ion-buttons>
-    <ion-searchbar placeholder="Yolcularda'da Ara"></ion-searchbar>
+    <ion-title>
+      Yolcu Kaydı
+    </ion-title>
   </ion-toolbar>
-  <ion-fab edge vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button (click)="registerPassenger()">
-          <ion-icon ios="ios-add" md="md-add" style="font-size: 30pt"></ion-icon> 
-        </ion-fab-button>
-  </ion-fab>  
 </ion-header>
-      
-<!------------------------------------------------------>
-<ion-content>
 
+<ion-content>
   <ion-card>
     <ion-card-header>
-        <ion-card-title>
-            <p>Barkod Tarayarak Kayıt Yap</p>
-        </ion-card-title>
-        <ion-item>
+      <ion-card-title>
+          <p>Barkod Tarayarak Kayıt Yap <br> Veya <br> El ile Kimlik Numarası Gir</p>
+      </ion-card-title>
+      <ion-item>
           <ion-label position="stacked">Kimlik Numarası</ion-label>
           <ion-input [(ngModel)]="this.KimlikNo"></ion-input>
         </ion-item>
-        <ion-button shape="round" (click)="barcodeScan()">Barkod Tarat</ion-button>
-      </ion-card-header>
-    </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-        <ion-card-title>
-            <p>Barkod Tarayarak Kayıt Yap <br> Veya <br> El ile Kimlik Numarası Gir</p>
-          </ion-card-title>
-        <ion-item>
-            <ion-label position="stacked">Kimlik Numarası</ion-label>
-            <ion-input [(ngModel)]="this.KimlikNo"></ion-input>
-          </ion-item>
-        <ion-button shape="round" (click)="barcodeScan()">Barkod Tarat</ion-button>
-        <ion-button shape="round" (click)="this.registerPassenger()">Kayıt Yap</ion-button>
-      </ion-card-header>
-    </ion-card>
-
+      <ion-button (click)="barcodeScan()">Barkod Tarat</ion-button>
+      <ion-button (click)="this.registerPassenger()">Kayıt Yap</ion-button>
+    </ion-card-header>
+  </ion-card>
 
 </ion-content>

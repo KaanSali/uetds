@@ -1,29 +1,59 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Platform, MenuController, PopoverController } from '@ionic/angular';
+
+import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { HelperService } from 'src/services/helper.service';
 import { LocalStoreService } from 'src/services/localstore.service';
-import { MenuList } from './menu-list';
-import { PopoverComponent } from './popover/popover.component';
+import { YoneticiRole, SoforRole } from 'src/models/Interfaces';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+  public appPages = [];
+  public loggedInMenu =[  ];
+  public loggedOffMenu=[
+    {
+      title: 'Giriş Yap',
+      url: '/login',
+      icon: 'contacts'
+    }
+  ];
+  public YolcuKaydi = {
+    title: 'Yolcu Kaydı',
+      url: '/yolcu-kaydi',
+      icon: 'home'
+  };
+  public SirketListesi = {
+    title:'Şirket Listesi',
+    url: '/sirket-listesi',
+    icon: 'business'
+  }
 
+  public PersonelListesi ={
+    title:'Personel Listesi',
+    url: '/personel-list',
+    icon: 'contacts'
+  }
+  public AracListesi = {
+    title:'Araç Listesi',
+    url: '/arac-listesi',
+    icon: 'car'
+  }
+  public CikisYap = {
+    title: 'Çıkış Yap',
+    url: '/logout',
+    icon: 'log-out'
+  }
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public helper: HelperService,
+    private helper: HelperService,
     private lss:LocalStoreService,
-    public menulist: MenuList,
-    private router:Router,
-    private menu: MenuController,
-    private popoverController:PopoverController
+    
   ) {
     this.initializeApp();
   }
@@ -42,35 +72,38 @@ export class AppComponent {
         await this.lss.loginsession.getItem('password').then((value) => {
         }).catch((err) => {
           alert(err);
-        });        
+        });
+        await this.lss.loginsession.getItem('role').then((value) => {
+          switch(value){
+            case "Yönetici":
+            this.helper.loginRole = new YoneticiRole();
+            break;
+            case "Şoför":
+            this.helper.loginRole = new SoforRole(); 
+          }
+        }).catch((err) => {
+          alert(err);
+        });
+        
         this.helper.isAuthenticated = true;
       }
     })
     if(this.helper.isAuthenticated){
-      this.menulist.loggedInMenu.push(this.menulist.Anasayfa);  
-      this.menulist.loggedInMenu.push(this.menulist.YolcuKaydi);      
-      this.menulist.loggedInMenu.push(this.menulist.PersonelListesi);   
-      this.menulist.loggedInMenu.push(this.menulist.AracListesi);
-      this.menulist.appPages = this.menulist.loggedInMenu;
+      this.loggedInMenu.push(this.YolcuKaydi);
+      if(this.helper.loginRole.SuruculereErisebilme){
+        this.loggedInMenu.push(this.PersonelListesi);
+      }
+      if(this.helper.loginRole.AraclaraErisebilme){
+        this.loggedInMenu.push(this.AracListesi);
+      }
+      if(this.helper.loginRole.SirketDuzenleme){
+        this.loggedInMenu.push(this.SirketListesi);
+      }
+      
+      this.loggedInMenu.push(this.CikisYap);
+      this.appPages = this.loggedInMenu;
     }else{
-      this.menulist.appPages = this.menulist.loggedOffMenu;
+      this.appPages = this.loggedOffMenu;
     }
-    this.menulist.loadSubmenu(this.menulist.SirketListesiSubmenu);
-  }
-
-  logout(){
-    this.lss.loginsession.clear();
-    this.menu.close();
-    this.helper.isAuthenticated= false;
-    this.router.navigate(["/login"]);
-    this.menulist.appPages= this.menulist.loggedOffMenu;
-  }
-  async popSirketler(ev : any){
-    const popSefer = await this.popoverController.create({
-      component : PopoverComponent,
-      event:ev,
-      translucent: true
-    });
-    popSefer.present();
   }
 }

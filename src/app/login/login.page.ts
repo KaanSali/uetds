@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginData } from 'src/models/Models';
+import { LoginData, YoneticiRole, SoforRole } from 'src/models/Interfaces';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ApiModel } from 'src/services/api/api.model';
 import { LocalStoreService } from 'src/services/localstore.service';
 import { HelperService } from 'src/services/helper.service';
-import { Personel } from 'src/models/Models';
+import { Personel } from 'src/models/Interfaces';
 import { AppComponent } from '../app.component';
-import { MenuList } from '../menu-list';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +21,7 @@ export class LoginPage {
 
   };
 
-  constructor(private router: Router, public helper:HelperService, public toastController: ToastController, public apimodel: ApiModel, public lss:LocalStoreService,private AppComponent:AppComponent,private menulist: MenuList) { }
+  constructor(private router: Router, public helper:HelperService, public toastController: ToastController, public apimodel: ApiModel, public lss:LocalStoreService,private AppComponent:AppComponent) { }
 
   async ionViewWillEnter() {
     await this.lss.loginsession.getItem('isLoggedin').then(async (value) => {
@@ -44,29 +43,45 @@ export class LoginPage {
       }
     })
     if (this.helper.isAuthenticated) {
-      this.router.navigate(['/anasayfa']);
+      this.router.navigate(['/yolcu-kaydi']);
     }
   }
 
   async login() {
     this.apimodel.login(this.loginData).subscribe(async (data) => {
       const toast = await this.toastController.create({
-        message: data["Message"],
+        message: data[0],
         duration: 2000
       });
       toast.present();
-      if (data["Status"] == true) {
+      if (data[0] == "Giriş Başarılı") {
         this.lss.loginsession.setItem("username",this.loginData.KimlikNo);
         this.lss.loginsession.setItem("password", this.loginData.Sifre);
+        this.lss.loginsession.setItem("role", data[1]);
         this.lss.loginsession.setItem("isLoggedin",true);
         this.helper.isAuthenticated = true;
-        
-        this.menulist.loggedInMenu =[];
-        this.menulist.loggedInMenu.push(this.menulist.YolcuKaydi);
-        this.menulist.loggedInMenu.push(this.menulist.PersonelListesi);   
-        this.menulist.loggedInMenu.push(this.menulist.AracListesi);  
-        this.menulist.appPages = this.menulist.loggedInMenu;
-        this.router.navigate(['/anasayfa']);
+        switch(data[1]){
+          case "Yönetici":
+          this.helper.loginRole = new YoneticiRole();
+          break;
+          case "Şoför":
+          this.helper.loginRole = new SoforRole(); 
+        }
+        this.AppComponent.loggedInMenu =[];
+        this.AppComponent.loggedInMenu.push(this.AppComponent.YolcuKaydi);
+      if(this.helper.loginRole.SuruculereErisebilme){
+        this.AppComponent.loggedInMenu.push(this.AppComponent.PersonelListesi);
+      }
+      if(this.helper.loginRole.AraclaraErisebilme){
+        this.AppComponent.loggedInMenu.push(this.AppComponent.AracListesi);
+      }
+      if(this.helper.loginRole.SirketDuzenleme){
+        this.AppComponent.loggedInMenu.push(this.AppComponent.SirketListesi);
+      }
+      
+      this.AppComponent.loggedInMenu.push(this.AppComponent.CikisYap);
+        this.AppComponent.appPages = this.AppComponent.loggedInMenu;
+        this.router.navigate(['/yolcu-kaydi']);
       }
     })
 

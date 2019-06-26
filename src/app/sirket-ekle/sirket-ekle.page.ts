@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Sirket,Personel } from 'src/models/Models';
+import { Company,Personel } from 'src/models/Interfaces';
 import { ApiModel } from 'src/services/api/api.model';
 import { HelperService } from 'src/services/helper.service';
 import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
@@ -10,30 +10,44 @@ import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
   styleUrls: ['./sirket-ekle.page.scss'],
 })
 export class SirketEklePage {
-  Sirket:Sirket = new Sirket();
+  Sirket:Company = new Company();
   YetkiliList:Personel[] = [];
-  SirketYetkilisi: string;
-
+  cameraOptions:CameraOptions={
+    destinationType:0,
+    sourceType:0,
+    allowEdit:true,
+    targetHeight:200,
+    targetWidth:200
+  }
   constructor(public apimodel:ApiModel,public helper:HelperService, public camera:Camera) { }
 
   async ionViewWillEnter(){
-    this.apimodel.getPersonelSirketYetki().subscribe(async (data) => {
-      this.YetkiliList.push(data["Details"]);
-    });
-    }
+    await this.GetYetkiliList();
+  }
 
+  async GetYetkiliList(){
+    await this.apimodel.getPersonelList().subscribe((data) =>{
+      this.YetkiliList = data;
+      this.YetkiliList = this.YetkiliList.filter(this.YetkiliFilter);
+    });    
+  }
+
+  YetkiliFilter(personel:Personel){
+    return (personel.Role.RoleName == "Yönetici");
+  }
 
   KayitOl(){
-    this.apimodel.addSirket(this.Sirket).subscribe((data =>{
-      console.log(data);
-      alert(data["Message"]);
+    console.log((typeof this.Sirket.Yetkili.Id));
+
+    this.apimodel.addCompany(this.Sirket).subscribe((data =>{
+      alert(data);
     }), (error) => {
       console.log(error);
       });
   }
 
   changeImage(imageHolder:HTMLIonImgElement,photoVar:string){
-    this.camera.getPicture(this.helper.cameraOptions).then((imageData)=>{
+    this.camera.getPicture(this.cameraOptions).then((imageData)=>{
       let base64Image = 'data:image/jpeg;base64,' + imageData;
      imageHolder.src = base64Image;
      this.Sirket[photoVar] = imageData;

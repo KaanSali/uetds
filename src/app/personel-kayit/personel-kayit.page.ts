@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { ApiModel } from 'src/services/api/api.model';
-import { Personel, Diller, Response } from 'src/models/Models';
+import { Personel, YoneticiRole, SoforRole } from 'src/models/Interfaces';
 import { HelperService } from 'src/services/helper.service';
 import { Camera,CameraOptions } from '@ionic-native/camera/ngx'
 import { Validators } from '@angular/forms';
@@ -13,38 +13,48 @@ import { Validators } from '@angular/forms';
 export class PersonelKayitPage implements OnInit {
 
   constructor(public apimodel:ApiModel, public renderer: Renderer2,public helper:HelperService,public camera:Camera) { }
-
   Personel:Personel=new Personel();
+  DilListesi=[
+    "Türkçe",
+    "İngilizce",
+    "Arapça",
+    "Almanca"
+]
   RoleString:string;
-  DilListesi:Diller[];
-  PersonelDil:string[]= [];
 
+  cameraOptions:CameraOptions={
+    destinationType:0,
+    sourceType:0,
+    allowEdit:true
+  }
   ngOnInit() {
-    this.apimodel.getDilListesi().subscribe((data =>{
-      this.DilListesi = data["Details"];
-      console.log(this.DilListesi);
-    }));
   }
 
   KayitOl(){
-     if(this.Personel.Ehliyet != "" || this.Personel.ProfilFoto != "" || this.Personel.Psikoteknik != "" || this.Personel.SabikaKaydi != "" || this.Personel.SrcBelgesi != ""){
-     this.apimodel.addPersonel(this.Personel).subscribe((data =>{
-       alert(data);
-       this.apimodel.addPersonelDil()
-     }), (error) => {
-       alert(JSON.stringify(error));
-       });
-    
-   }else{
-     alert("Fotoğraflar boş bırakılamaz");
-   }
+    var fotolar = this.Personel.PersonelFotograflari;
+    if(fotolar.Ehliyet != "" || fotolar.ProfilFoto != "" || fotolar.Psikoteknik != "" || fotolar.SabikaKaydi != "" || fotolar.SrcBelgesi != ""){
+    switch(this.RoleString){
+      case "Yönetici":
+      this.Personel.Role = new YoneticiRole();
+      break;
+      case "Şoför":
+      this.Personel.Role = new SoforRole();
+      break;
+    }
+    this.apimodel.addPersonel(this.Personel).subscribe((data =>{
+      alert(data);
+    }), (error) => {
+      alert(JSON.stringify(error));
+      });
+  }else{
+    alert("Fotoğraflar boş bırakılamaz");
   }
-
+  }
   changeImage(imageHolder:HTMLIonImgElement,photoVar:string){
-    this.camera.getPicture(this.helper.cameraOptions).then((imageData)=>{
+    this.camera.getPicture(this.cameraOptions).then((imageData)=>{
       let base64Image = 'data:image/jpeg;base64,' + imageData;
      imageHolder.src = base64Image;
-     this.Personel[photoVar] = imageData;
+     this.Personel['PersonelFotograflari'][photoVar] = imageData;
     },(err)=>{
       alert(err);
     })

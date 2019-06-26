@@ -1,6 +1,6 @@
 import { Component, Input} from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular'
-import { Personel, Diller } from '../../models/Models';
+import { Personel, YoneticiRole, SoforRole } from '../../models/Interfaces';
 import { ApiModel } from 'src/services/api/api.model';
 import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
 import { HelperService } from 'src/services/helper.service';
@@ -12,29 +12,24 @@ import { HelperService } from 'src/services/helper.service';
 })
 export class PersonelBilgileriPage {
   Personel:Personel = new Personel();
-  PersonelDiller:string[] =[];
-  DilListesi:Diller[];
+  DilListesi=[
+    "Türkçe",
+    "İngilizce",
+    "Arapça",
+    "Almanca"
+]
   RoleString:string;
 
-
+  cameraOptions:CameraOptions={
+    destinationType:0,
+    sourceType:0,
+    allowEdit:true
+  }
   constructor(public navParams: NavParams,private modal: ModalController,public apimodel:ApiModel,public camera:Camera,public helper:HelperService) { }
   
 
-  async ionViewWillEnter() {
-    var PersonelId = this.navParams.get('personelId');
-    await this.apimodel.getDilListesi().subscribe((data =>{
-      this.DilListesi = data["Details"];
-      this.apimodel.getPersonel(PersonelId).subscribe((async data => {
-        this.Personel = data["Details"][0];
-        data["Details"].forEach((element: { Dil_ID: number; }) => {
-          this.PersonelDiller.push(element.Dil_ID.toString());
-        });      
-        
-    }));
-  }));
-  }
-  showPersonelDil(){
-    console.log(this.PersonelDiller);
+  ionViewWillEnter() {
+    this.Personel = this.navParams.get('Personel');
   }
   closeModal(){
     this.modal.dismiss();
@@ -42,18 +37,27 @@ export class PersonelBilgileriPage {
 
 
   KayitOl(){
-     if(this.Personel.Ehliyet != "" || this.Personel.ProfilFoto != "" || this.Personel.Psikoteknik != "" || this.Personel.SabikaKaydi != "" || this.Personel.SrcBelgesi != ""){
-     this.apimodel.updPersonel(this.Personel).subscribe((data =>{
-       alert(data);
-     }), (error) => {
-       alert(JSON.stringify(error));
-       });
-   }else{
-     alert("Fotoğraflar boş bırakılamaz");
-   }
+    var fotolar = this.Personel.PersonelFotograflari;
+    if(fotolar.Ehliyet != "" || fotolar.ProfilFoto != "" || fotolar.Psikoteknik != "" || fotolar.SabikaKaydi != "" || fotolar.SrcBelgesi != ""){
+    switch(this.RoleString){
+      case "Yönetici":
+      this.Personel.Role = new YoneticiRole();
+      break;
+      case "Şoför":
+      this.Personel.Role = new SoforRole();
+      break;
+    }
+    this.apimodel.updPersonel(this.Personel).subscribe((data =>{
+      alert(data);
+    }), (error) => {
+      alert(JSON.stringify(error));
+      });
+  }else{
+    alert("Fotoğraflar boş bırakılamaz");
+  }
   }
   changeImage(imageHolder:HTMLIonImgElement,photoVar:string){
-    this.camera.getPicture(this.helper.cameraOptions).then((imageData)=>{
+    this.camera.getPicture(this.cameraOptions).then((imageData)=>{
       let base64Image = 'data:image/jpeg;base64,' + imageData;
      imageHolder.src = base64Image;
      this.Personel['PersonelFotograflari'][photoVar] = imageData;

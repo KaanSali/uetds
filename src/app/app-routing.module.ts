@@ -24,10 +24,7 @@ const routes: Routes = [
   { path: 'arac-listesi', loadChildren: './arac-listesi/arac-listesi.module#AracListesiPageModule' },
   { path: 'arac-bilgileri', loadChildren: './arac-bilgileri/arac-bilgileri.module#AracBilgileriPageModule' },
   { path: 'sirket-listesi', loadChildren: './sirket-listesi/sirket-listesi.module#SirketListesiPageModule' },
-  { path: 'sirket-bilgileri', loadChildren: './sirket-bilgileri/sirket-bilgileri.module#SirketBilgileriPageModule' },  { path: 'sirket-menusu', loadChildren: './sirket-menusu/sirket-menusu.module#SirketMenusuPageModule' },
-  { path: 'anasayfa', loadChildren: './anasayfa/anasayfa.module#AnasayfaPageModule' },
-  { path: 'yolculuklarim', loadChildren: './yolculuklarim/yolculuklarim.module#YolculuklarimPageModule' },
-
+  { path: 'sirket-bilgileri', loadChildren: './sirket-bilgileri/sirket-bilgileri.module#SirketBilgileriPageModule' },
 
 ];
 
