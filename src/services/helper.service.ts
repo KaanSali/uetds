@@ -1,17 +1,32 @@
 import { Injectable } from "@angular/core";
-import { YoneticiRole, IRole } from 'src/models/Interfaces';
+import { LocalStoreService } from 'src/services/localstore.service';
+import { CameraOptions } from '@ionic-native/camera/ngx';
 
 @Injectable()
 export class HelperService {
+	lss:LocalStoreService;
 	id: any;
 	isAuthenticated:boolean;
-	loginRole:IRole;
 	SITE_URL = "http://31.169.71.253:8665/";
-	SITE_URLEV = "http://192.168.1.28/UETDS/";
-	SITE_URL2= "http://localhost/UETDS/";
-
+	SITE_URL2 = "http://192.168.40.10:35685/";
+	SITE_URL1= "http://localhost:31385/";
+	CurrentUserName:string ="";
+	CurrentUserPic:string = "";
+	cameraOptions:CameraOptions={
+		destinationType:0,
+		sourceType:0,
+		targetHeight:512,
+		targetWidth:512,
+		allowEdit:true
+	  }
 	async delay(ms: number) {
 		return new Promise(resolve => setTimeout(resolve, ms));
 	}
 	blankImage:string = "../../assets/icon/13-512.png";
+	DilListesi=[
+		"Türkçe",
+		"İngilizce",
+		"Arapça",
+		"Almanca"
+	]
 }

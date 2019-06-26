@@ -20,7 +20,8 @@ interface PersonelFotograflari {
 	Psikoteknik: string,
 	SabikaKaydi: string
 }
-export class Company {
+export class Sirket {
+	Id : any;
 	Ad: string = "";
 	Yetkili: Personel = new Personel();
 	Email: string = "";

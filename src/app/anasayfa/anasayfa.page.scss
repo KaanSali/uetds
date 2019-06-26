@@ -1,0 +1,35 @@
+
+ion-header ion-fab-button{
+    width: 110px;
+    --border-radius:28px;
+    font-size: 16px;
+}
+#pie-chart-div{
+    margin-bottom: 40px;
+}
+
+@keyframes sefer_short{
+    from{
+        width: 110px;
+    }
+    to{
+        width: 56px;
+    }
+}
+
+.sefer_short{
+animation-name:sefer_short;
+animation-duration:0.5s;
+}
+
+
+#sefer_Fab_Bt{
+    --background:white;     
+    pointer-events: none; 
+    float: right; 
+    height:35px; 
+    width: 35px; 
+    font-size: 11pt;
+    font-weight: 600;
+    --color:#1e4485;
+}

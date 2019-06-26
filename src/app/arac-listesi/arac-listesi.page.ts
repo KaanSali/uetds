@@ -22,7 +22,7 @@ export class AracListesiPage {
 
   ionViewWillEnter() {
     this.apimodel.getAracList().subscribe((data => {
-      this.Araclar = data;
+      this.Araclar = data["Details"];
     }),error => {
       alert(error);
     })
