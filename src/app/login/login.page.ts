@@ -79,6 +79,8 @@ export class LoginPage {
         this.menulist.appPages = this.menulist.loggedInMenu;
         this.router.navigate(['/anasayfa']);
       }
+    }),(error => {
+      alert(JSON.stringify(error));
     })
 
 
