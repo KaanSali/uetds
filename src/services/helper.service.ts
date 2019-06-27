@@ -8,7 +8,7 @@ export class HelperService {
 	id: any;
 	isAuthenticated:boolean;
 	SITE_URL = "http://31.169.71.253:8665/";
-	SITE_URL2 = "http://192.168.40.10:35685/";
+	SITE_URL2 = "http://192.168.40.9:31385/";
 	SITE_URL1= "http://localhost:31385/";
 	CurrentUserName:string ="";
 	CurrentUserPic:string = "";

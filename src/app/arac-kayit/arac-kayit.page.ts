@@ -11,7 +11,8 @@ import { ApiModel } from 'src/services/api/api.model';
 })
 export class AracKayitPage implements OnInit {
   Arac:Arac = new Arac();
-
+  AracKeys= Object.keys(this.Arac.AracOzellikleri);
+  AracOzellikleri:string[] = [];
   constructor(public helper:HelperService,public camera:Camera,public apimodel:ApiModel) { }
 
   ngOnInit() {
@@ -22,17 +23,20 @@ export class AracKayitPage implements OnInit {
     this.camera.getPicture(this.helper.cameraOptions).then((imageData)=>{
       let base64Image = 'data:image/jpeg;base64,' + imageData;
      imageHolder.src = base64Image;
-     this.Arac[photoVar] = imageData;
+     this.Arac.AracFotograflari[photoVar] = imageData;
     },(err)=>{
       alert(err);
     })
   }
   AracKaydet(){
     if(this.Arac.AracFotograflari.Arka !="" || this.Arac.AracFotograflari.IcMekan != "" || this.Arac.AracFotograflari.On != "" || this.Arac.AracFotograflari.Ruhsat != "" || this.Arac.AracFotograflari.Sag != "" || this.Arac.AracFotograflari.SigortaPolice != "" || this.Arac.AracFotograflari.Sol != ""){
+    this.AracOzellikleri.forEach(element => {
+      this.Arac.AracOzellikleri[element] =true;
+    })
     this.apimodel.addArac(this.Arac).subscribe((data =>{
-      alert(data);
+      alert(JSON.stringify(data));
     }), (error) => {
-      console.log(error);
+      alert(JSON.stringify(error));
       });
   }else{
     alert("Fotoğraflar Boş Bırakılamaz");

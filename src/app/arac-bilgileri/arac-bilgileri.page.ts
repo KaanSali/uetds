@@ -12,7 +12,9 @@ import { HelperService } from 'src/services/helper.service';
 })
 export class AracBilgileriPage {
   Arac:Arac = new Arac();
+  AracKeys= Object.keys(this.Arac.AracOzellikleri);
   plaka:string;
+  AracOzellikleri:string[] = [];
 
   constructor(public navParams: NavParams,private modal: ModalController,public apimodel:ApiModel,public camera:Camera,public helper:HelperService) { }
 
@@ -20,7 +22,7 @@ export class AracBilgileriPage {
     this.camera.getPicture(this.helper.cameraOptions).then((imageData)=>{
       let base64Image = 'data:image/jpeg;base64,' + imageData;
      imageHolder.src = base64Image;
-     this.Arac[photoVar] = imageData;
+     this.Arac.AracFotograflari[photoVar] = imageData;
     },(err)=>{
       alert(err);
     })
@@ -29,17 +31,32 @@ export class AracBilgileriPage {
   ionViewWillEnter() {
     this.Arac = this.navParams.get('Arac');
     this.plaka = this.Arac.AracInfo.Plaka;
+    var a = Object.values(this.Arac.AracOzellikleri);
+    var i = 0;
+    a.forEach((element) => {
+      if(element == true){
+        this.AracOzellikleri.push(Object.keys(this.Arac.AracOzellikleri)[i]);
+      }
+      i++;
+    })
   }
   closeModal(){
     this.modal.dismiss();
   }
 
   aracGuncelle(){
+    if(this.Arac.AracFotograflari.Arka !="" || this.Arac.AracFotograflari.IcMekan != "" || this.Arac.AracFotograflari.On != "" || this.Arac.AracFotograflari.Ruhsat != "" || this.Arac.AracFotograflari.Sag != "" || this.Arac.AracFotograflari.SigortaPolice != "" || this.Arac.AracFotograflari.Sol != ""){
+      this.AracOzellikleri.forEach(element => {
+        this.Arac.AracOzellikleri[element] =true;
+      })
     this.apimodel.updArac(this.Arac).subscribe((data=>{
       alert(data);
     }),(error => {
       console.log(error);
-    }))
+    }));
   }
+  else{
+    alert("Fotoğraflar Boş Bırakılamaz");
+  }}
 
 }
