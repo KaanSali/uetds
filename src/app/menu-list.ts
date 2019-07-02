@@ -36,6 +36,11 @@ export class MenuList{
       url: '/arac-listesi',
       icon: 'car'
     }
+    public Ayarlar = {
+      title:'Ayarlar',
+      url: '/ayarlar',
+      icon: 'settings'
+    }
     public CikisYap = {
       title: 'Çıkış Yap',
       url: '/logout',

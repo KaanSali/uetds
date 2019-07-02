@@ -27,7 +27,8 @@ const routes: Routes = [
   { path: 'sirket-bilgileri', loadChildren: './sirket-bilgileri/sirket-bilgileri.module#SirketBilgileriPageModule' },
   { path: 'sirket-menusu', loadChildren: './sirket-menusu/sirket-menusu.module#SirketMenusuPageModule' },
   { path: 'anasayfa', loadChildren: './anasayfa/anasayfa.module#AnasayfaPageModule' },
-  { path: 'yolculuklarim', loadChildren: './yolculuklarim/yolculuklarim.module#YolculuklarimPageModule' },
+  { path: 'yolculuklarim', loadChildren: './yolculuklarim/yolculuklarim.module#YolculuklarimPageModule' },  { path: 'ayarlar', loadChildren: './ayarlar/ayarlar.module#AyarlarPageModule' },
+
 
 
 ];

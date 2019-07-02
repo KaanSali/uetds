@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button><ion-icon name="menu"></ion-icon></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Ayarlar</ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-content>
+  
+  <ion-card>
+    <ion-item lines="none">
+        <ion-icon slot="start" name="person"></ion-icon>
+        <ion-label>Profil Ayarları</ion-label>
+        <ion-icon slot="end" size="small" name="arrow-forward"></ion-icon>
+    </ion-item>
+  </ion-card>
+  
+  <ion-card>
+      <ion-item lines="none" style="margin: 10px 10px 10px 0px;">
+          <ion-icon slot="start" name="notifications"></ion-icon>
+          <ion-label>Bildirimler</ion-label>
+          <ion-toggle></ion-toggle>
+      </ion-item>
+    </ion-card>
+  
+    <ion-card>
+      <ion-item lines="none">
+        <ion-icon slot="start" name="color-palette"></ion-icon>
+        <ion-label>Renkler</ion-label>
+      </ion-item>
+      <ion-item lines="none" style="--padding-start: 0px; --inner-padding-end: 0px;">
+        <ion-grid fixed style="padding-bottom: 10px;">
+          <ion-row justify-content-center>
+            <ion-col col-auto>
+              <ion-fab-button (click)="changeTheme('Theme_D')" class="Theme_Fab_Bt">
+                <ion-icon size="large" name="add"></ion-icon>
+              </ion-fab-button>
+            </ion-col>
+            <ion-col col-auto>
+                <ion-fab-button (click)="changeTheme('Theme_1')"  class="Theme_Fab_Bt" style="--background: linear-gradient(0.40turn, rgb(170, 7, 7), rgb(97, 4, 4));">
+                    <ion-icon size="large" name="add"></ion-icon>
+                  </ion-fab-button>
+            </ion-col>
+            <ion-col col-auto>
+                <ion-fab-button (click)="changeTheme('Theme_2')" class="Theme_Fab_Bt" style="--background: linear-gradient(0.40turn, rgb(7, 12, 170), rgb(4, 7, 97));">
+                    <ion-icon size="large" name="add"></ion-icon>
+                  </ion-fab-button>
+            </ion-col>
+            <ion-col col-auto>
+                <ion-fab-button (click)="changeTheme('Theme_3')" class="Theme_Fab_Bt" style="--background: linear-gradient(0.40turn,#0cd1e8, #0c5ae8);">
+                    <ion-icon size="large" name="add"></ion-icon>
+                  </ion-fab-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item lines="none">
+          <ion-icon slot="start" name="keypad"></ion-icon>
+          <ion-label>Temalar</ion-label>
+      </ion-item>
+      <ion-item lines="none" style=" --padding-start: 12px; --inner-padding-end: 12px;">
+          <ion-slides pager="true">
+
+              <ion-slide class="step-one">
+                <ion-item lines="none">
+                  <ion-text><h2 style="margin: 0px;">Varsayılan Tema</h2></ion-text>
+                    <ion-label position="stacked">Tema:</ion-label>
+                    <ion-input placeholder="Varsayılan Tema"></ion-input>
+                </ion-item>
+                <ion-button expand="full" shape="round" (click)="changeThemeType('Theme_Default')">Temayı Seç</ion-button>
+              </ion-slide>
+          
+              <ion-slide class="step-two">
+                <ion-item lines="none">
+                    <ion-text><h2 style="margin: 0px;">Tema 2</h2></ion-text>
+                    <ion-label position="stacked">Tema 2:</ion-label>
+                    <ion-input placeholder="Tema 2"></ion-input>
+                </ion-item>
+                <ion-button expand="full" shape="round" (click)="changeThemeType('Theme_Type_2')">Temayı Seç</ion-button>
+              </ion-slide>
+          
+              <ion-slide class="step-three">
+                <ion-item lines="none">
+                    <ion-text><h2 style="margin: 0px;">Tema 3</h2></ion-text>
+                    <ion-label position="stacked">Tema 3:</ion-label>
+                    <ion-input placeholder="Tema 3"></ion-input>
+                </ion-item>
+                <ion-button expand="full" shape="round" (click)="changeThemeType('Theme_Type_3')">Temayı Seç</ion-button>
+              </ion-slide>
+
+          </ion-slides>
+      </ion-item>
+    </ion-card>
+  
+  </ion-content>
+  

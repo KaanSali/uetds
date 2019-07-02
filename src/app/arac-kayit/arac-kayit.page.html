@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content id="arac_kayit_page_content" padding>
   <form #myForm="ngForm" (ngSubmit)="this.AracKaydet()">
 
     <ion-item lines="none" style="text-align: center;"><ion-label>Önden Görünüş</ion-label></ion-item>
@@ -16,13 +16,15 @@
         <ion-col></ion-col>
         <ion-col col-auto>
           <ion-item class="img-item " lines="none">
-            <ion-img #On [src]="this.helper.blankImage" (click)="this.changeImage(On,'On')"></ion-img>
+            <ion-thumbnail>
+              <ion-img #On [src]="this.helper.blankImage" (click)="this.changeImage(On,'On')"></ion-img>
+            </ion-thumbnail>
           </ion-item>
         </ion-col>
         <ion-col></ion-col>
       </ion-row>
     </ion-grid>
-
+<div>
     <ion-item lines="none">
       <ion-label position="stacked">Plakası :</ion-label>
       <ion-input [(ngModel)]="Arac.AracInfo.Plaka" name="Plaka" required></ion-input>
@@ -76,7 +78,7 @@
       </ng-container>
       </ion-select>
     </ion-item>
-
+  </div>
     <ion-grid no-padding style="padding-top: 14px;">
         <ion-row>
           <ion-col class="Doc_Label">
@@ -91,13 +93,17 @@
           <ion-col size="6">
             <ion-item class="img-item" lines="none">
               <!-- <p class="img_label">Önden Görünüş</p> -->
-              <ion-img #IcMekan [src]="this.helper.blankImage" (click)="this.changeImage(IcMekan,'IcMekan')"></ion-img>
+              <ion-thumbnail>
+                <ion-img #IcMekan [src]="this.helper.blankImage" (click)="this.changeImage(IcMekan,'IcMekan')"></ion-img>
+              </ion-thumbnail>
             </ion-item>
           </ion-col>
           <ion-col size="6">
             <ion-item class="img-item" lines="none">
               <!-- <p class="img_label">Arkadan Görünüş</p> -->
-              <ion-img #Arka [src]="this.helper.blankImage" (click)="this.changeImage(Arka,'Arka')"></ion-img>
+              <ion-thumbnail>
+                <ion-img #Arka [src]="this.helper.blankImage" (click)="this.changeImage(Arka,'Arka')"></ion-img>
+              </ion-thumbnail>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -114,14 +120,18 @@
         <ion-row>
           <ion-col size="6">
             <ion-item class="img-item" lines="none">
-            <!-- <p class="img_label">Sağdan Görünüş</p> -->
-            <ion-img #Sag [src]="this.helper.blankImage" (click)="this.changeImage(Sag,'Sag')"></ion-img>
+              <!-- <p class="img_label">Sağdan Görünüş</p> -->
+              <ion-thumbnail>
+                <ion-img #Sag [src]="this.helper.blankImage" (click)="this.changeImage(Sag,'Sag')"></ion-img>
+              </ion-thumbnail>  
             </ion-item>
           </ion-col>
           <ion-col size="6">
             <ion-item class="img-item" lines="none">
-              <!-- <p class="img_label">Soldan Görünüş</p> -->
-              <ion-img #Sol [src]="this.helper.blankImage" (click)="this.changeImage(Sol,'Sol')"></ion-img>
+              <ion-thumbnail>
+                <!-- <p class="img_label">Soldan Görünüş</p> -->
+                <ion-img #Sol [src]="this.helper.blankImage" (click)="this.changeImage(Sol,'Sol')"></ion-img>
+              </ion-thumbnail>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -140,13 +150,17 @@
           <ion-col size="6">
             <ion-item class="img-item" lines="none">
               <!-- <p class="img_label">Psikoteknik Belgesi</p> -->
-              <ion-img #SigortaPolice [src]="this.helper.blankImage" (click)="this.changeImage(SigortaPolice,'SigortaPolice')"></ion-img>
+              <ion-thumbnail>
+                <ion-img #SigortaPolice [src]="this.helper.blankImage" (click)="this.changeImage(SigortaPolice,'SigortaPolice')"></ion-img>
+              </ion-thumbnail>
             </ion-item>
           </ion-col>
           <ion-col size="6">
             <ion-item class="img-item" lines="none">
               <!-- <p class="img_label">Sabıka Kaydı</p> -->
-              <ion-img #Ruhsat [src]="this.helper.blankImage" (click)="this.changeImage(Ruhsat,'Ruhsat')"></ion-img>
+              <ion-thumbnail>
+                <ion-img #Ruhsat [src]="this.helper.blankImage" (click)="this.changeImage(Ruhsat,'Ruhsat')"></ion-img>
+              </ion-thumbnail>
             </ion-item>
           </ion-col>
         </ion-row>

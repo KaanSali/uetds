@@ -1,15 +1,15 @@
 <ion-header>
     <ion-toolbar>
-        <ion-buttons class="Back_Bt" slot="start">
-      <ion-button (click)="closeModal()">
-        <ion-icon size="small" name="arrow-back"></ion-icon>
-      </ion-button>
+      <ion-buttons slot="start">
+        <ion-fab-button class="Back_Bt" vertical="center" horizontal="start" (click)="closeModal()">
+          <ion-icon name="arrow-back" size="small"></ion-icon> 
+        </ion-fab-button>
       </ion-buttons>
       <ion-title>{{Personel.PersonalInfo.Ad}} {{Personel.PersonalInfo.Soyad}}</ion-title>
     </ion-toolbar>
   </ion-header>
   
-  <ion-content padding>
+  <ion-content id="personel_bilgi_page_content" padding>
     <form #myForm="ngForm" (ngSubmit)="this.KayitOl()">
       <ion-item lines="none" style="text-align: center;"><ion-label>Profil Fotoğrafı</ion-label></ion-item>
       <ion-grid>
@@ -18,13 +18,15 @@
           <ion-col col-auto>
             <ion-item class="img-item" lines="none">
               <!-- <p class="img_label">Profil Fotoğrafı</p> -->
-              <ion-img #ProfilFoto [src]="this.helper.SITE_URL+Personel.PersonelFotograflari.ProfilFoto" (click)="this.changeImage(ProfilFoto,'ProfilFoto')" name="pp"></ion-img>
+              <ion-thumbnail>
+                <ion-img #ProfilFoto [src]="this.helper.SITE_URL+Personel.PersonelFotograflari.ProfilFoto" (click)="this.changeImage(ProfilFoto,'ProfilFoto')" name="pp"></ion-img>
+              </ion-thumbnail>
             </ion-item>  
           </ion-col>
           <ion-col></ion-col>
         </ion-row>
       </ion-grid>    
-  
+  <div>
       <ion-item lines="none">
         <ion-label position="stacked">Adı :</ion-label>
         <ion-input [(ngModel)]="Personel.PersonalInfo.Ad" required name="ad"></ion-input>
@@ -82,6 +84,7 @@
             <ion-select-option *ngFor="let dil of helper.DilListesi" value="{{dil}}">{{dil}}</ion-select-option>
           </ion-select>
         </ion-item>
+  </div>      
       <ion-grid no-padding style="padding-top: 14px;">
         <ion-row>
           <ion-col class="PK_Doc_Label">
@@ -95,13 +98,17 @@
           <ion-col size="6">
               <ion-item class="img-item" lines="none">
                   <!-- <p class="img_label">Ehliyet Fotoğrafı</p> -->
-                <ion-img #Ehliyet [src]="this.helper.SITE_URL+Personel.PersonelFotograflari.Ehliyet" (click)="this.changeImage(Ehliyet,'Ehliyet')" name="ehliyet"></ion-img>
+                <ion-thumbnail>
+                  <ion-img #Ehliyet [src]="this.helper.SITE_URL+Personel.PersonelFotograflari.Ehliyet" (click)="this.changeImage(Ehliyet,'Ehliyet')" name="ehliyet"></ion-img>
+                </ion-thumbnail>
               </ion-item>
           </ion-col>
           <ion-col size="6">
               <ion-item class="img-item" lines="none">
                   <!-- <p class="img_label">Src Belgesi</p> -->
-                <ion-img #SrcBelgesi [src]="this.helper.SITE_URL + Personel.PersonelFotograflari.SrcBelgesi" (click)="this.changeImage(SrcBelgesi,'SrcBelgesi')" name="src"></ion-img>
+                <ion-thumbnail>
+                  <ion-img #SrcBelgesi [src]="this.helper.SITE_URL + Personel.PersonelFotograflari.SrcBelgesi" (click)="this.changeImage(SrcBelgesi,'SrcBelgesi')" name="src"></ion-img>
+                </ion-thumbnail>
               </ion-item>
           </ion-col>
         </ion-row>
@@ -120,13 +127,17 @@
           <ion-col size="6">
               <ion-item class="img-item" lines="none">
                   <!-- <p class="img_label">Psikoteknik Belgesi</p> -->
-                <ion-img #Psikoteknik [src]="this.helper.SITE_URL +Personel.PersonelFotograflari.Psikoteknik" (click)="this.changeImage(Psikoteknik,'Psikoteknik')" name="psiko"></ion-img>
+                <ion-thumbnail>
+                  <ion-img #Psikoteknik [src]="this.helper.SITE_URL +Personel.PersonelFotograflari.Psikoteknik" (click)="this.changeImage(Psikoteknik,'Psikoteknik')" name="psiko"></ion-img>
+                </ion-thumbnail>
               </ion-item>
           </ion-col>
           <ion-col size="6">
               <ion-item class="img-item" lines="none">
                   <!-- <p class="img_label">Sabıka Kaydı</p> -->
-                <ion-img #SabikaKaydi [src]="this.helper.SITE_URL + Personel.PersonelFotograflari.SrcBelgesi" (click)="this.changeImage(SabikaKaydi,'SabikaKaydi')" name="sabika"></ion-img>
+                <ion-thumbnail>
+                  <ion-img #SabikaKaydi [src]="this.helper.SITE_URL + Personel.PersonelFotograflari.SrcBelgesi" (click)="this.changeImage(SabikaKaydi,'SabikaKaydi')" name="sabika"></ion-img>
+                </ion-thumbnail>
               </ion-item>
           </ion-col>
         </ion-row>

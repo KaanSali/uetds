@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content id="personel_save_page_content" padding>
 
   <!--  <ion-fab edge vertical="top" horizontal="end" slot="fixed">
         <ion-fab-button color="danger" (click)="addPage()">
@@ -16,95 +16,97 @@
     </ion-fab>   -->
 
   <form #myForm="ngForm" (ngSubmit)="this.KayitOl()">
-    <ion-item lines="none" style="text-align: center;"><ion-label>Profil Fotoğrafı</ion-label></ion-item>
+    <ion-item lines="none" style="text-align: center; align-self:center; left:0px; "><ion-label>Profil Fotoğrafı</ion-label></ion-item>
     <ion-grid>
       <ion-row>
         <ion-col></ion-col>
         <ion-col col-auto>
           <ion-item class="img-item " lines="none">
             <!--      <p class="img_label">Profil Fotoğrafı</p>  -->
-            <ion-img #ProfilFoto [src]="this.helper.blankImage" (click)="this.changeImage(ProfilFoto,'ProfilFoto')" name="pp"></ion-img>
+            <ion-thumbnail>
+              <ion-img #ProfilFoto [src]="this.helper.blankImage" (click)="this.changeImage(ProfilFoto,'ProfilFoto')" name="pp"></ion-img>
+            </ion-thumbnail>
           </ion-item>
         </ion-col>
         <ion-col></ion-col>
       </ion-row>
     </ion-grid>
+  <div>
+      <ion-item lines="none">
+        <!-- <ion-label position="stacked"><pre> Adı :</pre></ion-label> -->
+        <ion-label position="stacked">Adı</ion-label>
+        <ion-input [(ngModel)]="Personel.PersonalInfo.Ad" required name="ad"></ion-input>
+      </ion-item>
 
-    <ion-item lines="none">
-      <!-- <ion-label position="stacked"><pre> Adı :</pre></ion-label> -->
-      <ion-label position="stacked">Adı</ion-label>
-      <ion-input [(ngModel)]="Personel.PersonalInfo.Ad" required name="ad"></ion-input>
-    </ion-item>
+      <ion-item lines="none">
+        <ion-label position="stacked">Soyadı</ion-label>
+        <ion-input [(ngModel)]="Personel.PersonalInfo.Soyad" required name="soyad"></ion-input>
+      </ion-item>
 
-    <ion-item lines="none">
-      <ion-label position="stacked">Soyadı</ion-label>
-      <ion-input [(ngModel)]="Personel.PersonalInfo.Soyad" required name="soyad"></ion-input>
-    </ion-item>
-
-    <ion-grid id="uyruk_kimlik" no-padding>
-      <ion-row>
-        <ion-col no-padding>
-          <ion-item lines="none">
-            <ion-label position="stacked">Uyruğu</ion-label>
-            <ion-input [(ngModel)]="Personel.PersonalInfo.Uyruk" required name="uyruk"></ion-input>
-          </ion-item >
-      </ion-col>
-
-      <ion-col no-padding>
-          <ion-item lines="none" style="min-width: 200px;">
-            <ion-label position="stacked">Kimlik Numarası</ion-label>
-            <ion-input [(ngModel)]="Personel.PersonalInfo.KimlikNo" maxlength=11 minlength=11 required name="kimlik"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-grid no-padding>
+      <ion-grid id="uyruk_kimlik" no-padding>
         <ion-row>
           <ion-col no-padding>
-              <ion-item lines="none">
-                  <ion-label position="stacked">Cinsiyeti</ion-label>
-                  <ion-select [(ngModel)]="Personel.PersonalInfo.Cinsiyet" name="cinsiyet" value="Erkek">
-                    <ion-select-option value="E">Erkek</ion-select-option>
-                    <ion-select-option value="K">Kadın</ion-select-option>
-                  </ion-select>
-                </ion-item>
-          </ion-col>
-  
-          <ion-col no-padding>
-              <ion-item lines="none" style="min-width: 200px;">
-                  <ion-label position="stacked">Personel Türü</ion-label>
-                  <ion-select [(ngModel)]="RoleString" value="Şoför" name="tur">
-                    <ion-select-option value="Şoför">Şoför</ion-select-option>
-                    <ion-select-option value="Yönetici">Yönetici</ion-select-option>
-                  </ion-select>
-                </ion-item>
+            <ion-item lines="none">
+              <ion-label position="stacked">Uyruğu</ion-label>
+              <ion-input [(ngModel)]="Personel.PersonalInfo.Uyruk" required name="uyruk"></ion-input>
+            </ion-item >
+        </ion-col>
+
+        <ion-col no-padding>
+            <ion-item lines="none" style="min-width: 200px;">
+              <ion-label position="stacked">Kimlik Numarası</ion-label>
+              <ion-input [(ngModel)]="Personel.PersonalInfo.KimlikNo" maxlength=11 minlength=11 required name="kimlik"></ion-input>
+            </ion-item>
           </ion-col>
         </ion-row>
-    </ion-grid>
+      </ion-grid>
 
-    <ion-item lines="none" display="inline-block">
-      <ion-label position="stacked">Şifresi</ion-label>
-      <ion-input [(ngModel)]="Personel.PersonalInfo.Sifre" type="password" required name="sifre"></ion-input>
-    </ion-item>
+      <ion-grid no-padding>
+          <ion-row>
+            <ion-col no-padding>
+                <ion-item lines="none" style="width: 100%;">
+                    <ion-label position="stacked">Cinsiyeti</ion-label>
+                    <ion-select [(ngModel)]="Personel.PersonalInfo.Cinsiyet" name="cinsiyet" value="Erkek">
+                      <ion-select-option value="E">Erkek</ion-select-option>
+                      <ion-select-option value="K">Kadın</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+            </ion-col>
+    
+            <ion-col no-padding>
+                <ion-item lines="none" style="min-width: 200px;">
+                    <ion-label position="stacked">Personel Türü</ion-label>
+                    <ion-select [(ngModel)]="RoleString" value="Şoför" name="tur">
+                      <ion-select-option value="Şoför">Şoför</ion-select-option>
+                      <ion-select-option value="Yönetici">Yönetici</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
 
-    <ion-item lines="none">
-      <ion-label position="stacked">Telefon Numarası</ion-label>
-      <ion-input [(ngModel)]="Personel.PersonalInfo.Telefon" required name="telefon"></ion-input>
-    </ion-item>
+      <ion-item lines="none" display="inline-block">
+        <ion-label position="stacked">Şifresi</ion-label>
+        <ion-input [(ngModel)]="Personel.PersonalInfo.Sifre" type="password" required name="sifre"></ion-input>
+      </ion-item>
 
-    <ion-item lines="none">
-      <ion-label position="stacked">Email Adresi</ion-label>
-      <ion-input [(ngModel)]="Personel.PersonalInfo.Email" type="email" required name="email"></ion-input>
-    </ion-item>
+      <ion-item lines="none">
+        <ion-label position="stacked">Telefon Numarası</ion-label>
+        <ion-input [(ngModel)]="Personel.PersonalInfo.Telefon" required name="telefon"></ion-input>
+      </ion-item>
 
-    <ion-item lines="none">
-      <ion-label position="stacked">Konuştuğu Diller</ion-label>
-      <ion-select multiple="true" [(ngModel)]="Personel.KonustuguDiller" name="diller" required>
-          <ion-select-option *ngFor="let dil of helper.DilListesi" value="{{dil}}">{{dil}}</ion-select-option>
-        </ion-select>
-    </ion-item>
+      <ion-item lines="none">
+        <ion-label position="stacked">Email Adresi</ion-label>
+        <ion-input [(ngModel)]="Personel.PersonalInfo.Email" type="email" required name="email"></ion-input>
+      </ion-item>
 
+      <ion-item lines="none">
+        <ion-label position="stacked">Konuştuğu Diller</ion-label>
+        <ion-select multiple="true" [(ngModel)]="Personel.KonustuguDiller" name="diller" required>
+            <ion-select-option *ngFor="let dil of helper.DilListesi" value="{{dil}}">{{dil}}</ion-select-option>
+          </ion-select>
+      </ion-item>
+  </div>
 
     <ion-grid no-padding style="padding-top: 14px;">
       <ion-row>
@@ -119,13 +121,17 @@
         <ion-col size="6">
             <ion-item class="img-item" lines="none">
                 <!-- <p class="img_label">Ehliyet Fotoğrafı</p> -->
-              <ion-img #Ehliyet [src]="this.helper.blankImage" (click)="this.changeImage(Ehliyet,'Ehliyet')" name="ehliyet"></ion-img>
+              <ion-thumbnail>
+                <ion-img #Ehliyet [src]="this.helper.blankImage" (click)="this.changeImage(Ehliyet,'Ehliyet')" name="ehliyet"></ion-img>
+              </ion-thumbnail>
             </ion-item>
         </ion-col>
         <ion-col size="6">
             <ion-item class="img-item" lines="none">
                 <!-- <p class="img_label">Src Belgesi</p> -->
-              <ion-img #SrcBelgesi [src]="this.helper.blankImage" (click)="this.changeImage(SrcBelgesi,'SrcBelgesi')" name="src"></ion-img>
+              <ion-thumbnail>
+                <ion-img #SrcBelgesi [src]="this.helper.blankImage" (click)="this.changeImage(SrcBelgesi,'SrcBelgesi')" name="src"></ion-img>
+              </ion-thumbnail>
             </ion-item>
         </ion-col>
       </ion-row>
@@ -144,13 +150,17 @@
         <ion-col size="6">
             <ion-item class="img-item" lines="none">
                 <!-- <p class="img_label">Psikoteknik Belgesi</p> -->
-              <ion-img #Psikoteknik [src]="this.helper.blankImage" (click)="this.changeImage(Psikoteknik,'Psikoteknik')" name="psiko"></ion-img>
+              <ion-thumbnail>
+                <ion-img #Psikoteknik [src]="this.helper.blankImage" (click)="this.changeImage(Psikoteknik,'Psikoteknik')" name="psiko"></ion-img>
+              </ion-thumbnail>
             </ion-item>
         </ion-col>
         <ion-col size="6">
             <ion-item class="img-item" lines="none">
                 <!-- <p class="img_label">Sabıka Kaydı</p> -->
-              <ion-img #SabikaKaydi [src]="this.helper.blankImage" (click)="this.changeImage(SabikaKaydi,'SabikaKaydi')" name="sabika"></ion-img>
+              <ion-thumbnail>
+                <ion-img #SabikaKaydi [src]="this.helper.blankImage" (click)="this.changeImage(SabikaKaydi,'SabikaKaydi')" name="sabika"></ion-img>
+              </ion-thumbnail>
             </ion-item>
         </ion-col>
       </ion-row>

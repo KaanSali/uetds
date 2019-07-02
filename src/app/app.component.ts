@@ -7,6 +7,9 @@ import { HelperService } from 'src/services/helper.service';
 import { LocalStoreService } from 'src/services/localstore.service';
 import { MenuList } from './menu-list';
 import { PopoverComponent } from './popover/popover.component';
+import { ThemeService } from './theme.service';
+import {Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'app-root',
@@ -23,7 +26,8 @@ export class AppComponent {
     public menulist: MenuList,
     private router:Router,
     private menu: MenuController,
-    private popoverController:PopoverController
+    private popoverController:PopoverController,
+    private theme: ThemeService
   ) {
     this.initializeApp();
   }
@@ -56,7 +60,8 @@ export class AppComponent {
     }else{
       this.menulist.appPages = this.menulist.loggedOffMenu;
     }
-    this.menulist.loadSubmenu(this.menulist.SirketListesiSubmenu);
+    //this.menulist.loadSubmenu(this.menulist.SirketListesiSubmenu);
+    this.menulist.loggedInMenu.push(this.menulist.Ayarlar);
   }
 
   logout(){
@@ -75,4 +80,9 @@ export class AppComponent {
     // popSefer.present();
     this.menutype = "0";
   }
+
+/*   changeTheme(name) {
+    this.theme.setTheme(themes[name]);
+  } */
+
 }

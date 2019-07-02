@@ -4,7 +4,7 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: var(--color-primary);
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -74,4 +74,32 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+//----------------------------------------------------------------------------------------  
+--default-gradient-color: linear-gradient(0.40turn, rgb(170, 7, 107), rgb(97, 4, 95));
+--one-gradient-color    : linear-gradient(0.40turn, rgb(170, 7, 7), rgb(97, 4, 4));
+--second-gradient-color : linear-gradient(0.40turn, rgb(7, 12, 170), rgb(4, 7, 97));
+--third-gradient-color  : linear-gradient(0.40turn, #a5ffff, #2ea2a2);
+//----------------------------------------------------------------------------------------
+--default-theme-input-border-radius: 22.5px;
+--theme-one-border-radius    : 0px; 
+--theme-two-border-radius    : 12px;
+//----------------------------------------------------------------------------------------
+--color-primary       : #b61877 ;
+--fab-button-color    : linear-gradient(0.40turn, rgb(170, 7, 107), rgb(97, 4, 95));
+--save-label-color    : #b61877 ;
+--button-color        : linear-gradient(0.40turn, rgb(170, 7, 107), rgb(97, 4, 95));
+--arac-list-subtitle  : #885e88;
+--arac-list-subtitle-P: #c8c8c8;
+--pers-list-subtitle  : #7c2d6f;
+--pers-list-subtitle-P: #505050;
+//-----------------------------------------------------------------------------------------
+--input-border-radius: 22.5px;
+--input-border       : none;
+--input-label-align  : center;
+--input-background   : #f1f1f1;
+--input-label-border-radius: 10px;
+--input-label-left   : '';
+--image-border-radius: 12px;
 }
+

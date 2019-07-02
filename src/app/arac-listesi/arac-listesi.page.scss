@@ -1,0 +1,21 @@
+/* 
+ion-card{
+    box-shadow:none;
+    border: 1.5px solid #ededed;
+    border-radius: 12px;
+}:active{border-color: #b61877;} 
+*/
+ion-card{ border-radius: 12px; border:1px solid transparent; }
+ion-card:active{ border:1px solid var(--arac-list-subtitle); }
+ion-card:active>ion-item ion-icon{ color: var(--arac-list-subtitle);}
+ion-item ion-icon,ion-card-subtitle:nth-child(3){ color: #c8c8c8; }
+
+ion-card-subtitle{
+    font-size: 12pt;
+    font-family: calibri;
+    margin-bottom: 0px;
+    //color:#999999;
+    //color:#9b799b ;
+    color: var(--arac-list-subtitle);
+}
+// #9b799b = grape

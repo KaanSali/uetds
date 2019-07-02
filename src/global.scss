@@ -10,93 +10,48 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 
-ion-header{
-box-shadow: 0 3px 3px 0px #ededed;
-}
-ion-img{
-    height: 100px;
-    width: 100px;
-    float:left;
-}
+ion-header{box-shadow: 0 3px 3px 0px #ededed;}
+ion-img{height: 100px;width: 100px;float:left;}
+ion-card-title{margin-top: -3px;}
 
-ion-card-title{
-    margin-top: -3px;
-}
+.half-input {width: 49%;  }
+.full-input {width: 100%; }
+.float-left {float: left; }
+.float-right{float: right;}
+.half-image {width: 46%;  }
+.border-box {border: 1px solid black; }
+.select-box {height: 100%; }
+.profile {padding-top: 10%; }
+.list-card h2assertive {float: right; padding-top: 10% !important; }
+.half-card {width: 46%; }
 
-/* ion-card{
-  box-shadow: 0 4px 16px rgba(182,24,119,0.3) !important;
-} */
+ion-searchbar ion-icon,ion-menu-button{ color: var(--color-primary) !important; } 
 
-.half-input {
-    width: 49%; }
-  
-  .full-input {
-    width: 100%; }
-  
-  .float-left {
-    float: left; }
-  
-  .float-right {
-    float: right; }
-  
-  .half-image {
-    width: 46%; }
-  
-  .border-box {
-    border: 1px solid black; }
-  
-  .select-box {
-    height: 100%; }
-  
-  .profile {
-    padding-top: 10%; }
-  
-  .list-card h2assertive {
-    float: right;
-    padding-top: 10% !important; }
-  
-  .half-card {
-    width: 46%; }
-
-  ion-searchbar ion-icon,ion-menu-button{ 
-      //display: none;
-      color: #b61877 !important;
-    } 
-
-
-    ion-menu-toggle{
-      --background:#ffffff;
-      ion-icon{ color: #b61877 !important; padding:5px; background:#f1f1f1; border-radius: 50%;}  
+ion-menu-toggle{
+    --background:#ffffff;
+      ion-icon{ color: var(--color-primary) !important; padding:5px; background:#f1f1f1; border-radius: 50%;}  
       ion-item{margin:15px auto; --background:transparent;}
-    }
+        }
 
-    ion-menu {
-      --ion-background-color: var(--ion-color-primary-contrast);
-      --ion-text-color: grey;
-      ion-content{
-        --ion-background-color:#ffffff !important;
-      }
-    
-      ion-toolbar {
-        --ion-background-color: var(--ion-color-primary-contrast);
-      }
-    
-      ion-list {/* optional, but it needs when you use gradient as a background color.*/
-        background: transparent;
-      }
-    }
+ion-menu {
+    --ion-background-color: var(--ion-color-primary-contrast);
+    --ion-text-color: grey;
+      ion-content{ --ion-background-color:#ffffff !important; }
+      ion-toolbar { --ion-background-color: var(--ion-color-primary-contrast); }
+      ion-list { background: transparent; }
+  }
 
-    ion-menu-button{    
-      height: 40px;
-          ion-icon{
-            padding: 5px;
-            height: 30px;
-            width: 30px;
-            border-radius: 50%;
-            background: #fafafa;
-       }
-      } 
-  .searchbar-input-container,.sc-ion-searchbar-ios{
+ion-menu-button{    
+    height: 40px;
+      ion-icon{
+        padding: 5px;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        background: #fafafa;
+     }
+    } 
+.searchbar-input-container,.sc-ion-searchbar-ios{
     border-radius: 20px;
     height: 40px !important; }
     ::placeholder{ 
@@ -104,140 +59,123 @@ ion-card-title{
       font-size: 16px; 
       font-weight: 700; }
 
-
-
-  .Back_Bt{
-    ion-icon{
-        color:#c8c8c8;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: #ebebeb;
+.Back_Bt {
+    width: 40px;
+    height: 40px;
+    --background: #c8c8c8;
+    ion-icon{font-size:30pt;}
     }
-}
+
 
 .Save_Bt{
-  margin:24px 10px;
+    margin:24px 10px;
+    --background:var(--button-color);
+    --background-activated:lightgray;
+    --border-radius:var(--input-border-radius);
 }
 
-.Doc_Label{
-  text-align: center;
-  color: #53bebe;
-  font-weight: bold;
-  font-size: 12.5pt;
-  font-family: 'Calibri';
+.Doc_Label,.PK_Doc_Label{
+    text-align: center;
+    font-weight: bold;
+    font-size: 12.5pt;
+    font-family: 'Calibri';
 }
+.Doc_Label   {color: var(--color-primary);}
+.PK_Doc_Label{color: var(--pers-list-subtitle);}
 
 ion-grid{
   ion-img{
     height:140px;
     width: 140px;
     border:2px dashed lightgray;
-    border-radius:12px;
-    
-}
+    border-radius:var(--image-border-radius); 
+  }
 }
 
 ion-fab-button{
-  --background:linear-gradient(0.40turn, rgb(170, 7, 107), rgb(97, 4, 95));
-  --background-activated:#b6b6b6 !important;
+    --background:var(--fab-button-color);
+    --background-activated:#b6b6b6 !important;
 }
 
+//-----------------------------------------------
 
-//--------------COMMON------------------
-
-/* ion-fab-button{}
-.Save_Bt{}
-.icon_color{} */
-
-
-
-//--------------THEME_1-----------------
-
-/* ion-item ion-label{
-    color: #b61877;
+#personel_save_page_content,
+#personel_bilgi_page_content,
+#arac_kayit_page_content,
+#arac_bilgi_page_content{
+ion-item{text-align: center; --padding-start: 8px; }
+div ion-label{ left: var(--input-label-left ); }
+ion-item ion-label{
+    color: var(--pers-list-subtitle);
     font-size: 12.5pt;
     padding: 0px 7px;
     font-weight: bold;
     font-family: 'Calibri';
     position: relative;
     top: 13px;
-    left: 25px; 
     background: #ffffff;
     z-index: 3;
     width: fit-content;
-    border-radius: 10px;
+    border-radius: var(--input-label-border-radius);
     margin-top: 0px;
-}
-
-ion-input{
-  border-radius: 22.5px;
-  border: 2px solid lightgray;
-  padding-left: 8px !important;
-  min-height: 45px;
-  align-items: center;
-  --background: #f1f1f1;
-} */
-
-
-//--------------THEME_2-----------------
-
-/* .Save_Bt{
-  --background:linear-gradient(0.40turn, rgb(170, 7, 107), rgb(97, 4, 95));
-  border-radius: 0px;
-
-}
-
-ion-input{
-  border-radius: 0px;
-  border: 1px solid lightgray; 
-  padding-left: 8px !important;
-  min-height: 45px;
-  align-items: center;
-
-  ion-label{
-    padding-left:3px;
-    padding-right:3px; 
+    align-self: var(--input-label-align);
+    margin-right: 0px;
   }
-} 
+  
+ion-input,ion-select{
+    border-radius: var(--input-border-radius);
+    border: var(--input-border);
+    padding-left: 8px !important;
+    min-height: 45px;
+    align-items:center;
+    background: var(--input-background);
+    }
 
-ion-img{
-height:150px;
-width:100%;
-border: 2px dashed lightgray;
+  ion-grid ion-item{
+    width: fit-content;
+    margin: auto;
+      }
+  
+  ion-thumbnail{
+    height: fit-content;
+    width: fit-content;
+    }
 }
 
-*/
-
-//--------------THEME_3-----------------
+//-----------------------------------------------
 
 #menu_profile_photo{
-  width: 120px;
-  height: 120px;
-  margin:20px;
+    width: 120px;
+    height: 120px;
+    margin:20px;
 }
 
 .sss{
-  --background:#ffffff;
-  ion-icon{ color: #b61877 !important; padding:5px; background:#f1f1f1; border-radius: 50%;}  
-  ion-item{margin:15px auto; --background:transparent;}
-  border-top:1px solid #f1f1f1;
-  padding-top:10px;
-}
-
-.Save_Bt{
-  margin:24px 10px;
-  --background:#53bebe;
-  --background-activated:lightgray;
+    --background:#ffffff;
+    ion-icon{ color: var(--color-primary) !important; padding:5px; background:#f1f1f1; border-radius: 50%;}  
+    ion-item{margin:15px auto; --background:transparent;}
+    border-top:1px solid #f1f1f1;
+    padding-top:10px;
 }
 
 ion-title{
-  color: #9a9a9a !important;
-  font-size: 16pt;
-  font-family: calibri;
+    color: #9a9a9a !important;
+    font-size: 16pt;
+    font-family: calibri;
 }
 .SirketStyle{
-  --background:#ffffff;
-  ion-icon{ color: #b61877 !important; padding:5px; background:#f1f1f1; border-radius: 50%;}  
-  ion-item{margin:15px auto; --background:transparent;}
+    --background:#ffffff;
+    ion-icon{ color: var(--color-primary) !important; padding:5px; background:#f1f1f1; border-radius: 50%;}  
+    ion-item{margin:15px auto; --background:transparent;}
+}
+
+// #760078 Personel Bilgileri Label rengi
+//Yeni Tema Rengi Fab: --background: linear-gradient(0.40turn,#a5ffff, #2ea2a2);
+
+.swiper-pagination{position: relative !important; bottom: 0px; top: 4px;}
+
+.ayarlar_page_content{
+  .item-native {
+    padding-left: 8px;
+  }
 }
