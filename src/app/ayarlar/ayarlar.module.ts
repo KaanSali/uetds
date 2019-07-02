@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { ThemeService } from '../theme.service';
+import { ThemeService } from '../../services/theme.service';
 import { IonicModule } from '@ionic/angular';
 
 import { AyarlarPage } from './ayarlar.page';

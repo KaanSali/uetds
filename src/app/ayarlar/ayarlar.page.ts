@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemeService } from '../theme.service';
+import { ThemeService } from '../../services/theme.service';
 
 const color_themes = {
   Theme_D:{

@@ -1,6 +1,6 @@
 import { Injectable,Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import {Storage } from '@ionic/storage';
+import { LocalStoreService } from 'src/services/localstore.service';
 //-------------------------------------
 
 const defaults = {
@@ -63,13 +63,13 @@ function CSSThemeGenerator(types) {
 })
 export class ThemeService {
 
-  constructor( @Inject(DOCUMENT) private document: Document, private storage: Storage ) { 
+  constructor( @Inject(DOCUMENT) private document: Document, private lss: LocalStoreService ) { 
     
-    storage.get('theme').then(cssText => {  // <--- GET SAVED THEME
+    lss.loginsession.getItem('theme').then((cssText:string) => {  // <--- GET SAVED THEME
     this.setGlobalCSS(cssText);
     });
 
-    storage.get('ThemeType').then(cssText => {  // <--- GET SAVED THEME
+    lss.loginsession.getItem('ThemeType').then((cssText:string) => {  // <--- GET SAVED THEME
       this.setGlobalCSSTheme(cssText);
       });
 
@@ -78,12 +78,12 @@ export class ThemeService {
   setTheme(theme) {
     const cssText = CSSColorGenerator(theme);
     this.setGlobalCSS(cssText);
-    this.storage.set('theme', cssText);
+    this.lss.loginsession.setItem('theme', cssText);
   }
 
-  setVariable(name, value) {
+ /*  setVariable(name, value) {
     this.document.documentElement.style.setProperty(name, value);
-  }
+  } */
 
   private setGlobalCSS(css: string) {
     this.document.documentElement.style.cssText = css;
@@ -94,12 +94,12 @@ export class ThemeService {
   setThemeType(ThemeType) {
     const cssText = CSSThemeGenerator(ThemeType);
     this.setGlobalCSSTheme(cssText);
-    this.storage.set('ThemeType', cssText);
+    this.lss.loginsession.setItem('ThemeType', cssText);
   }
-
+/* 
   setVariableType(name, value) {
     this.document.documentElement.style.setProperty(name, value);
-  }
+  } */
 
   private setGlobalCSSTheme(css: string) {
     this.document.documentElement.style.cssText = css;

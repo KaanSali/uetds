@@ -7,8 +7,7 @@ import { HelperService } from 'src/services/helper.service';
 import { LocalStoreService } from 'src/services/localstore.service';
 import { MenuList } from './menu-list';
 import { PopoverComponent } from './popover/popover.component';
-import { ThemeService } from './theme.service';
-import {Storage } from '@ionic/storage';
+import { ThemeService } from '../services/theme.service';
 
 
 @Component({

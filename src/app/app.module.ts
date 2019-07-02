@@ -21,7 +21,6 @@ import { FormsModule } from '@angular/forms';
 import { SirketBilgileriPage } from './sirket-bilgileri/sirket-bilgileri.page';
 import { MenuList } from './menu-list';
 import { PopoverComponent } from './popover/popover.component';
-import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent,PersonelBilgileriPage,AracBilgileriPage,SirketBilgileriPage,PopoverComponent],
@@ -29,7 +28,6 @@ import { IonicStorageModule } from '@ionic/storage';
   imports: [
     BrowserModule,
     IonicModule.forRoot({mode:'ios'}),
-    IonicStorageModule.forRoot(),
     HttpClientModule,
     AppRoutingModule,
     FormsModule      
