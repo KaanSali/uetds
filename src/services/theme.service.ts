@@ -57,9 +57,6 @@ function CSSThemeGenerator(types) {
 `;
 }
 
-//var themes = new Array(2); //themes[0] = "theme"; themes[1] = "ThemeType";
-//var themes = { Color_Theme : 'Theme_D', Theme_Type : 'Theme_Default'};
-
 //--------------------------------------
 
 @Injectable({
@@ -67,11 +64,7 @@ function CSSThemeGenerator(types) {
 })
 export class ThemeService {
 
-  /* private theme: BehaviorSubject<String>; */
-
   constructor( @Inject(DOCUMENT) private document: Document, private lss: LocalStoreService ) { 
-
-    /* this.theme = new BehaviorSubject('Theme_Type_Default'); */
 
     lss.loginsession.getItem('theme').then((cssText:string) => {  // <--- GET SAVED THEME
       this.setGlobalCSS(cssText);
@@ -89,7 +82,7 @@ export class ThemeService {
   }
 
   private setGlobalCSS(css: string) {
-    this.document.documentElement.style.cssText = css;
+    this.document.documentElement.style.cssText +=';'+ css;
   }
 
   //--------------------------------------------------------------
@@ -101,12 +94,6 @@ export class ThemeService {
   }
 
   private setGlobalCSSTheme(css: string) {
-    this.document.documentElement.style.cssText = css;
+    this.document.documentElement.style.cssText +=';'+ css;
   } 
-
-/*   setActiveTheme(val) { this.theme.next(val); }
-  getActiveTheme()    {  return this.theme.asObservable(); }
- */
-
-
 }
