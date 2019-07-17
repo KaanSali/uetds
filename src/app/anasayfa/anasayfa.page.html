@@ -9,20 +9,20 @@
       <ion-title>Anasayfa</ion-title>
     </ion-toolbar>
 
-    <ion-fab id="Sefer_Ekle_Bt" edge vertical="bottom" horizontal="end" slot="end" > <!--(click)="popSeferEkle($event)"-->
-        <ion-fab-button >
-          <ion-icon ios="ios-add" md="md-add" style="display: none; font-size: 20pt"></ion-icon>
-          <ion-label>Sefer Ekle</ion-label>
+    <ion-fab id="Sefer_Ekle_Bt" edge vertical="bottom" horizontal="end" slot="end"> <!--(click)="popSeferEkle($event)"-->
+        <ion-fab-button (click)="OpenActionSheet()">
+          <ion-icon ios="ios-add" md="md-add" style="font-size: 30pt"></ion-icon>
+          <!-- <ion-label>Sefer Ekle</ion-label> -->
         </ion-fab-button>
     </ion-fab>
     
 
 </ion-header>
 
-<ion-content padding>
+<ion-content id="anasayfa_content" padding>
 
 
-  <ion-card style="--background: linear-gradient(0.70turn, #7fa3e0, #3267c5);">
+  <ion-card id="sefer-istekleri_Bt" (click)="OpenModal()">
     <ion-card-content style="padding:10px 10px 10px 10px;">
       <ion-grid fixed>
         <ion-row>
@@ -37,12 +37,75 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card (click)="this.router.navigate(['/yolculuklarim']);">
+  <ion-card id="istatistik_card" (click)="GoPage()"> <!-- (click)="this.router.navigate(['/yolculuklarim']);" --> 
       <ion-card-header>
-          <ion-card-title text-center>İstatistikler</ion-card-title>
+          <ion-icon name="podium"></ion-icon>
+          <ion-card-title text-center class="general_title">İstatistikler</ion-card-title>
         </ion-card-header>
-      <div id="pie-chart-div"></div>
-  </ion-card>
+      <!-- <div id="pie-chart-div"></div> -->
+      <ion-card-content>
+        <ion-grid no-padding>
+            <ion-item class="ion-row" >
+              <ion-col no-padding>
+                  <ion-label>Günlük Sefer Sayısı :</ion-label>
+              </ion-col>
+              <ion-col no-padding>
+                  <ion-label style="width: fit-content; float: right;">10</ion-label>
+              </ion-col>    
+            </ion-item>
+    
+            <ion-item class="ion-row" >
+                <ion-col no-padding>
+                    <ion-label>Toplam Sefer Sayısı :</ion-label>
+                </ion-col>
+                <ion-col no-padding>
+                    <ion-label style="width: fit-content; float: right;">100</ion-label>
+                </ion-col>    
+            </ion-item>
+    
+            <ion-item class="ion-row">
+                <ion-col no-padding>
+                    <ion-label>Günlük Yolcu Sayısı :</ion-label>
+                </ion-col>
+                <ion-col no-padding>
+                    <ion-label style="width: fit-content; float: right;">10</ion-label>
+                </ion-col>    
+            </ion-item>
+    
+            <ion-item class="ion-row">
+                <ion-col no-padding>
+                    <ion-label>Toplam Yolcu Sayısı :</ion-label>
+                </ion-col>
+                <ion-col no-padding>
+                    <ion-label style="width: fit-content; float: right;">300</ion-label>
+                </ion-col>    
+            </ion-item>
+
+            <ion-item class="ion-row">
+                <ion-col no-padding>
+                    <ion-label>Günlük Kazanç (TL) :</ion-label>
+                </ion-col>
+                <ion-col no-padding>
+                    <ion-label style="width: fit-content; float: right;">1000</ion-label>
+                </ion-col>       
+            </ion-item>
+
+            <ion-item class="ion-row">
+                <ion-col no-padding>
+                    <ion-label>Toplam Kazanç (TL) :</ion-label>
+                </ion-col>
+                <ion-col no-padding>
+                    <ion-label style="width: fit-content; float: right;">10000</ion-label>
+                </ion-col>       
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-label class="yolculuklarim_label">Yolculuklarım</ion-label>
+              <ion-icon size="small" name="arrow-forward"></ion-icon>
+            </ion-item>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
   <script>
       $("#pie-chart-div").hide();
     </script>

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button><ion-icon name="menu"></ion-icon></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Yolcu Kaydet</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding id="yolcu_kaydet_page_content">
+  <form #myForm="ngForm">
+    <div>
+      <ion-item lines="none">
+        <ion-label position="stacked">Uyruğu</ion-label>
+        <ion-input name="uyruk" required><!-- <ion-icon name="globe" mode="md"></ion-icon> --></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Kimlik Numarası</ion-label>
+        <ion-input name="kimlikno" required><!-- <ion-icon name="finger-print"></ion-icon> --></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Adı</ion-label>
+        <ion-input name="ad" required><!-- <ion-icon name="person" mode="md"></ion-icon> --></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Soyadı</ion-label>
+        <ion-input name="soyad" required><!-- <ion-icon name="people" mode="md"></ion-icon> --></ion-input>
+      </ion-item>
+      
+      <ion-button class="Save_Bt" type="submit" expand="block" name="submit">Kaydet</ion-button>
+    </div>
+  </form>    
+</ion-content>

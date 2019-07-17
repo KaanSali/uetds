@@ -66,7 +66,7 @@
             <ion-col no-padding>
                 <ion-item lines="none" style="width: 100%;">
                     <ion-label position="stacked">Cinsiyeti</ion-label>
-                    <ion-select [(ngModel)]="Personel.PersonalInfo.Cinsiyet" name="cinsiyet" value="Erkek">
+                    <ion-select [(ngModel)]="Personel.PersonalInfo.Cinsiyet" name="cinsiyet" value="Erkek" placeholder="Seçiniz">
                       <ion-select-option value="E">Erkek</ion-select-option>
                       <ion-select-option value="K">Kadın</ion-select-option>
                     </ion-select>
@@ -102,7 +102,7 @@
 
       <ion-item lines="none">
         <ion-label position="stacked">Konuştuğu Diller</ion-label>
-        <ion-select multiple="true" [(ngModel)]="Personel.KonustuguDiller" name="diller" required>
+        <ion-select multiple="true" [(ngModel)]="Personel.KonustuguDiller" name="diller" required placeholder="Seçiniz">
             <ion-select-option *ngFor="let dil of helper.DilListesi" value="{{dil}}">{{dil}}</ion-select-option>
           </ion-select>
       </ion-item>

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-fab-button class="Back_Bt" vertical="center" horizontal="start" (click)="closeModal()">
+            <ion-icon name="arrow-back" size="small"></ion-icon> 
+          </ion-fab-button>
+        </ion-buttons>
+    <ion-title>Sefer İstekleri</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="sefer_istekleri_content" padding>
+
+  <ion-item class="history_item" lines="none" text-center>
+    <ion-label style="margin: 5px 8px 5px 0px;">30.07.2019</ion-label>
+  </ion-item>
+  <!-- ---------------------------------------- -->
+  <ion-item lines="none" class="sefer_item" *ngFor="let item of [].constructor(9)" (click)="OpenActionSheet()">
+    <ion-grid style="margin-top:10px; margin-bottom:10px;">
+      <ion-row  align-items-center>
+          <!-- <ion-icon class="B_icon" name="clock" mode="md"></ion-icon> -->
+          <ion-label style="margin-right: auto; margin-left:auto;">Sefer No: 34357</ion-label>
+      </ion-row>
+      <ion-row >
+          <ion-icon class="B_icon" name="pin"></ion-icon>
+          <ion-label ion-row>Kartal/İstanbul</ion-label>
+      </ion-row>
+      <ion-row >
+          <ion-icon class="B_icon" name="flag"></ion-icon>
+          <ion-label ion-row>Üsküdar/İstanbul</ion-label>
+      </ion-row>
+    </ion-grid>
+    <ion-icon size="small" name="arrow-forward" style="color:#9a9a9a;"></ion-icon>
+  </ion-item>
+
+</ion-content>

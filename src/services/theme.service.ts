@@ -1,6 +1,7 @@
 import { Injectable,Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { LocalStoreService } from 'src/services/localstore.service';
+import { BehaviorSubject } from 'rxjs';
 //-------------------------------------
 
 const defaults = {
@@ -56,6 +57,9 @@ function CSSThemeGenerator(types) {
 `;
 }
 
+//var themes = new Array(2); //themes[0] = "theme"; themes[1] = "ThemeType";
+//var themes = { Color_Theme : 'Theme_D', Theme_Type : 'Theme_Default'};
+
 //--------------------------------------
 
 @Injectable({
@@ -63,27 +67,26 @@ function CSSThemeGenerator(types) {
 })
 export class ThemeService {
 
+  /* private theme: BehaviorSubject<String>; */
+
   constructor( @Inject(DOCUMENT) private document: Document, private lss: LocalStoreService ) { 
-    
+
+    /* this.theme = new BehaviorSubject('Theme_Type_Default'); */
+
     lss.loginsession.getItem('theme').then((cssText:string) => {  // <--- GET SAVED THEME
-    this.setGlobalCSS(cssText);
-    });
-
-    lss.loginsession.getItem('ThemeType').then((cssText:string) => {  // <--- GET SAVED THEME
-      this.setGlobalCSSTheme(cssText);
+      this.setGlobalCSS(cssText);
       });
-
+   
+    lss.loginsession.getItem('ThemeType').then((cssText2:string) => {  // <--- GET SAVED THEME
+      this.setGlobalCSSTheme(cssText2);
+      });  
     }
     
-  setTheme(theme) {
+   setTheme(theme) {
     const cssText = CSSColorGenerator(theme);
     this.setGlobalCSS(cssText);
     this.lss.loginsession.setItem('theme', cssText);
   }
-
- /*  setVariable(name, value) {
-    this.document.documentElement.style.setProperty(name, value);
-  } */
 
   private setGlobalCSS(css: string) {
     this.document.documentElement.style.cssText = css;
@@ -96,13 +99,14 @@ export class ThemeService {
     this.setGlobalCSSTheme(cssText);
     this.lss.loginsession.setItem('ThemeType', cssText);
   }
-/* 
-  setVariableType(name, value) {
-    this.document.documentElement.style.setProperty(name, value);
-  } */
 
   private setGlobalCSSTheme(css: string) {
     this.document.documentElement.style.cssText = css;
-  }
+  } 
+
+/*   setActiveTheme(val) { this.theme.next(val); }
+  getActiveTheme()    {  return this.theme.asObservable(); }
+ */
+
 
 }

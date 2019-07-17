@@ -5,14 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AnasayfaPage } from './anasayfa.page';
-import { SeferIstekleriPage } from '../sefer-istekleri/sefer-istekleri.page';
-import { SeferEklePage } from '../sefer-ekle/sefer-ekle.page';
+import { YolcuKaydetPage } from './yolcu-kaydet.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: AnasayfaPage
+    component: YolcuKaydetPage
   }
 ];
 
@@ -23,7 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [AnasayfaPage,SeferIstekleriPage,SeferEklePage],
-  entryComponents:[SeferIstekleriPage,SeferEklePage]
+  declarations: [YolcuKaydetPage]
 })
-export class AnasayfaPageModule {}
+export class YolcuKaydetPageModule {}

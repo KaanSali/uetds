@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ClassProvider, InjectableProvider, ValueProvider } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
+import { Provider } from '@angular/compiler/src/core';
 
 const color_themes = {
   Theme_D:{
@@ -85,7 +86,13 @@ export class AyarlarPage implements OnInit {
     this.theme.setTheme(color_themes[name]);
   }
 
-  changeThemeType(name) {
+   changeThemeType(name) {
     this.ThemeTypes.setThemeType(theme_types[name]);
-  }
+  } 
+
+ /*  changeThemeType(name){
+    this.settings.setActiveTheme(name);
+  } */
+
+
 }

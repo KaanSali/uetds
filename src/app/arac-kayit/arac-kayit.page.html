@@ -47,7 +47,7 @@
       
     <ion-item lines="none" style="width: 50%; float:right;">
       <ion-label position="stacked">Yakıtı :</ion-label>
-      <ion-select [(ngModel)]="Arac.AracInfo.Yakit" name="yakit" required>
+      <ion-select [(ngModel)]="Arac.AracInfo.Yakit" name="yakit" required placeholder="Seçiniz">
         <ion-select-option value="Benzin">Benzin</ion-select-option>
         <ion-select-option value="Dizel">Dizel</ion-select-option>
         <ion-select-option value="Hybrid">Hybrid</ion-select-option>
@@ -57,7 +57,7 @@
 
     <ion-item lines="none">
       <ion-label position="stacked">Araç Türü :</ion-label>
-      <ion-select [(ngModel)]="Arac.AracInfo.Turu" name="tur" required>
+      <ion-select [(ngModel)]="Arac.AracInfo.Turu" name="tur" required placeholder="Seçiniz">
         <ion-select-option value="VIP">VIP(9 Koltuk)</ion-select-option>
         <ion-select-option value="MINI">MINI(19 Koltuk)</ion-select-option>
         <ion-select-option value="MIDI">MIDI(31 Koltuk)</ion-select-option>
@@ -67,7 +67,7 @@
 
     <ion-item lines="none">
         <ion-label position="stacked">Araç Özellikleri</ion-label>
-      <ion-select [(ngModel)]="this.AracOzellikleri" name="aracozellikleri" multiple="true">
+      <ion-select [(ngModel)]="this.AracOzellikleri" name="aracozellikleri" multiple="true" placeholder="Seçiniz">
         <ng-container *ngFor="let property of AracKeys">
           <ng-container *ngIf="property=='CocukKoltugu'; else elseTemplate">
         <ion-select-option value="property">Çocuk Koltuğu</ion-select-option>

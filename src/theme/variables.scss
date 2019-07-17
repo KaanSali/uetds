@@ -94,6 +94,7 @@
 --pers-list-subtitle  : #7c2d6f;
 --pers-list-subtitle-P: #505050;
 //-----------------------------------------------------------------------------------------
+
 --input-border-radius: 22.5px;
 --input-border       : none;
 --input-label-align  : center;
@@ -101,5 +102,36 @@
 --input-label-border-radius: 10px;
 --input-label-left   : '';
 --image-border-radius: 12px;
+
+ .Theme_Type_Default{
+  --input-border-radius: 22.5px;
+  --input-border       : none;
+  --input-label-align  : center;
+  --input-background   : #f1f1f1;
+  --input-label-border-radius: 10px;
+  --input-label-left   : '';
+  --image-border-radius: 12px;
 }
+.Theme_Type_2{
+  --input-border-radius: 0px;
+  --input-border       : 1px solid lightgray;
+  --input-label-align  : normal;
+  --input-background   : #ffffff;
+  --input-label-border-radius: 0px;
+  --input-label-left   : 10px;
+  --image-border-radius: 0px;
+}
+
+.Theme_Type_3{
+  --input-border-radius: 12px;
+  --input-border       : 2px solid lightgray;
+  --input-label-align  : normal;
+  --input-background   : #ffffff;
+  --input-label-border-radius: 0px;
+  --input-label-left   : 10px;
+  --image-border-radius: 12px;
+}
+
+}
+
 

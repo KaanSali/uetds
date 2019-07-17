@@ -52,7 +52,8 @@ ion-menu-button{
      }
     } 
 .searchbar-input-container,.sc-ion-searchbar-ios{
-    border-radius: 20px;
+    //border-radius: 20px;
+    border-radius: var(--input-border-radius) !important;
     height: 40px !important; }
     ::placeholder{ 
       text-align: center; 
@@ -102,7 +103,9 @@ ion-fab-button{
 #personel_save_page_content,
 #personel_bilgi_page_content,
 #arac_kayit_page_content,
-#arac_bilgi_page_content{
+#arac_bilgi_page_content,
+#sefer-ekle_content,
+#yolcu_kaydet_page_content{  
 ion-item{text-align: center; --padding-start: 8px; }
 div ion-label{ left: var(--input-label-left ); }
 ion-item ion-label{
@@ -122,7 +125,7 @@ ion-item ion-label{
     margin-right: 0px;
   }
   
-ion-input,ion-select{
+ion-input,ion-select,ion-datetime {
     border-radius: var(--input-border-radius);
     border: var(--input-border);
     padding-left: 8px !important;
@@ -130,6 +133,7 @@ ion-input,ion-select{
     align-items:center;
     background: var(--input-background);
     }
+    ion-datetime{    min-height: unset;}
 
   ion-grid ion-item{
     width: fit-content;
@@ -158,16 +162,20 @@ ion-input,ion-select{
     padding-top:10px;
 }
 
-ion-title{
+ion-title,.general_title{
     color: #9a9a9a !important;
     font-size: 16pt;
     font-family: calibri;
 }
+.general_title{font-size: 18pt;}
+
 .SirketStyle{
     --background:#ffffff;
     ion-icon{ color: var(--color-primary) !important; padding:5px; background:#f1f1f1; border-radius: 50%;}  
     ion-item{margin:15px auto; --background:transparent;}
 }
+
+//---------------------------------------------------------------
 
 // #760078 Personel Bilgileri Label rengi
 //Yeni Tema Rengi Fab: --background: linear-gradient(0.40turn,#a5ffff, #2ea2a2);
@@ -178,4 +186,101 @@ ion-title{
   .item-native {
     padding-left: 8px;
   }
+}
+
+//------------------Anasayfa---ActionSheet-----------------------
+.action-sheet-group.sc-ion-action-sheet-ios {border-radius: var(--image-border-radius);}
+#seferEkleSecenek{
+  .action-sheet-group.sc-ion-action-sheet-ios:last-child  { margin-bottom: auto ; }
+  .action-sheet-group.sc-ion-action-sheet-ios:first-child { margin-top: 60px ; }
+  .action-sheet-button.sc-ion-action-sheet-ios:not(:last-child) { border-bottom: 1px solid #f1f1f1;}
+  .action-sheet-button.sc-ion-action-sheet-ios:last-child { border-top: 2px solid #f1f1f1; }
+}
+
+button.action-sheet-button.ion-activatable.action-sheet-.sc-ion-action-sheet-ios:not(:first-child){
+  border-top: 1px solid #f1f1f1;
+}
+
+
+.action-sheet-title.sc-ion-action-sheet-ios{
+  font-size: 15px;
+  font-weight: 600;
+  border-bottom: 1px solid #f1f1f1;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.action-sheet-button.sc-ion-action-sheet-ios{
+  padding-top: 16px;
+  padding-bottom: 16px;
+  height: 60px;
+}
+
+// .action-sheet-button.sc-ion-action-sheet-ios:last-child { border-top: 1px solid #f1f1f1; }
+
+.action-sheet-button-inner.sc-ion-action-sheet-ios{
+    display: grid ;
+    grid-template-columns: auto 1fr ;
+    font-size: 14pt;
+  }
+//---------------------------------------------------------------
+.alert-title.sc-ion-alert-ios{    
+  color: #9a9a9a !important;
+  font-size: 14pt;
+  font-family: calibri;
+}
+
+.alert-tappable.sc-ion-alert-ios{
+  border-bottom: 1px solid #f1f1f1;
+}
+  .alert-tappable.sc-ion-alert-ios:last-child{
+    border-bottom: none;
+  }
+
+ //---------------------------------------------------------------
+ .picker-opt{
+   font-size: 26px;
+   color: var(--color-primary);
+ } 
+//----------------------------------------------------------------
+#personel_list_content,
+#arac_list_content,
+#ayarlar_page_content,
+#anasayfa_content{ion-card{border-radius:var(--image-border-radius);}}
+
+
+#sefer_istekleri_content,#yolculuklarim_page_content{
+  .history_item{
+    //--background:#f1f1f1;
+    --background:#dbdbdb;
+    --border-radius: var(--input-border-radius);
+    --min-height:25px;
+    color: #8a8a8a;
+    font-weight: bold;
+    font-family: calibri;
+    margin-top:15px;
+  }
+
+  .sefer_item{
+    margin-top: 15px;
+    --background: #f1f1f1;
+    overflow: initial;
+    --border-radius: var(--image-border-radius);
+    ion-label{ color:#6c6c6c; }
+    ion-row.hydrated:not(:last-child) { margin-bottom: 5px; }
+}:active{--background:#b3b3b3;}
+
+.B_icon{
+  padding:3px;
+  border-radius: 50%;
+  background: white;
+  color: var(--color-primary);
+  margin-left: 5px;
+  margin-right: 10px;
+}
+} 
+
+#sefer_detay{
+  .action-sheet-group.sc-ion-action-sheet-ios:last-child  {margin-bottom: auto;}
+  .action-sheet-group.sc-ion-action-sheet-ios:first-child {margin-top: auto;   }
 }

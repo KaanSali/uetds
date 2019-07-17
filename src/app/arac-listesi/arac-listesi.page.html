@@ -17,7 +17,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content id="arac_list_content" padding>
 
 
 <!--     <ion-card (click)="openModal(Personels[1])" *ngFor="let item of [].constructor(5)">
@@ -34,7 +34,7 @@
     <ion-card *ngFor="let Arac of Araclar" (click)="openModal(Arac)">
       <ion-item lines="none" style="margin: 10px 0px; --padding-start: 14px; --inner-padding-end: 10px;">
         <ion-thumbnail slot="start" style="    height: 70px; width: 100px;">
-          <ion-img style="height: 100%; width: 100%;  border-radius: 12px !important;" src="{{this.helper.SITE_URL}}{{Arac.AracFotograflari.On}}"></ion-img>
+          <ion-img style="height: 100%; width: 100%;  border-radius: var(--image-border-radius) !important;" src="{{this.helper.SITE_URL}}{{Arac.AracFotograflari.On}}"></ion-img>
         </ion-thumbnail>
         <ion-label>
             <ion-card-subtitle>{{Arac.AracInfo.Marka}}</ion-card-subtitle>

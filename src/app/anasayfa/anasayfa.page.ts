@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import{NavController,ModalController,PopoverController} from '@ionic/angular';
+import{NavController,ModalController,PopoverController,ActionSheetController} from '@ionic/angular';
 import { PopoverComponent } from '../popover/popover.component';
-import * as $ from 'jquery';
+import { SeferIstekleriPage } from '../sefer-istekleri/sefer-istekleri.page';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { SeferEklePage } from '../sefer-ekle/sefer-ekle.page';
 
 @Component({
   selector: 'app-anasayfa',
@@ -11,64 +13,18 @@ import * as $ from 'jquery';
 })
 export class AnasayfaPage implements OnInit {
 
+  barcodeData:any;
+  KimlikNo:string;
 
   constructor(public router:Router,
               private nav:NavController, 
-              private modalController:ModalController, 
-              private popoverController:PopoverController) { }
-
-       
-
-  googleChartLibrary;
+              public modalController:ModalController, 
+              private popoverController:PopoverController,
+              private actionSheetController: ActionSheetController,
+              public barcodeScanner:BarcodeScanner) { }
 
   //----------------------------------------------------------------------------
-
-  // Callback that creates and populates a data table,
-  // instantiates the pie chart, passes in the data and
-  // draws it.
-  drawChart () {
-    // Create the data table.
-    var data = new this.googleChartLibrary.visualization.DataTable();
-    data.addColumn('string', 'Activity Name');
-    data.addColumn('number', 'Hours');
-    data.addRows([
-      ['Sleeping', 8],
-      ['Working', 8],
-      ['Sports', 2],
-      ['Eating', 2],
-      ['Social', 2]
-    ]);
-
-    // Instantiate and draw our chart, passing in some options.
-    var chart = new this.googleChartLibrary.visualization
-      .PieChart(document.getElementById('pie-chart-div'));
-
-    chart.draw(data, {
-      'title': '',
-      'legend':'none',
-      'width': '100%',
-      'height':'100%',
-      pieHole:0.3,
-      pieSliceText: 'label',
-      slices: {  4: {offset: 0.2}},
-      chartArea:{top:10,width:'85%',height:'85%'},
-      //colors:['red','#004411'],
-    });
-  }
-
-  //----------------------------------------------------------------------------
-
-  useVanillaJSLibrary() {
-    this.googleChartLibrary = (<any>window).google;
-    // Load the Visualization API and the corechart package.
-    this.googleChartLibrary.charts.load('current', { 'packages': ['corechart'] });
-
-    // Set a callback to run when the Google Visualization API is loaded.
-    this.googleChartLibrary.charts.setOnLoadCallback(this.drawChart.bind(this));
-  }
-
-  //----------------------------------------------------------------------------
-  addPage(){
+  GoPage(){
     this.router.navigate(['/yolculuklarim']);
  }
 
@@ -77,8 +33,7 @@ export class AnasayfaPage implements OnInit {
  }
 
   ngOnInit() {
-    this.useVanillaJSLibrary();
-    //$("#pie-chart-div").hide();
+
   }
 
   async popSeferEkle(ev : any){
@@ -89,5 +44,68 @@ export class AnasayfaPage implements OnInit {
     }); 
     popSefer.present();
   }
+
+  //---------------------------------------------------------------------------------------
+  async OpenActionSheet() {
+    /*   const actionSheetController = document.querySelector('ion-action-sheet-controller');
+         await actionSheetController.componentOnReady(); 
+    */
+    const actionSheet = await this.actionSheetController.create({
+      id: 'seferEkleSecenek',
+      header: "YOLCU ve SEFER EKLE",
+      buttons: [
+      {
+        text: 'BARKOD TARAT',
+        icon: 'barcode',
+        handler: () => { this.barcodeScan() }
+      }, 
+      {
+        text: 'EL İLE GİRİŞ',
+        icon: 'md-create',
+        handler: () => {  this.router.navigate(['/yolcu-kaydet']); }
+      },
+      {
+        text: 'SEFER EKLE',
+        icon: 'md-bus',
+        handler: () => {  this.Open_Sefer_Ekle_Modal() }
+      }]
+    });
+    await actionSheet.present();
+  }
+  //---------------------------------------------------------------------------------------
+
+  async OpenModal(){
+    const  modal = await this.modalController.create({
+      component: SeferIstekleriPage
+    });
+    await modal.present();  
+  }
+
+  async Open_Sefer_Ekle_Modal(){
+    const  modal = await this.modalController.create({
+      component: SeferEklePage
+    });
+    await modal.present();  
+  }
+
+
+  barcodeScan(){
+    this.barcodeScanner.scan().then(barcodeData => {
+      console.log('Barcode data', JSON.stringify(barcodeData));
+      if(barcodeData.cancelled==true){
+        this.barcodeData = "Okuma İptal Edildi"
+      }else{
+        this.barcodeData = "TC No: " + barcodeData.text;
+        this.KimlikNo = barcodeData.text;
+      }
+     }).catch(err => {
+         console.log('Error', err);
+     });
+  }
+
+  registerPassenger(){
+
+  }
+
 
 }

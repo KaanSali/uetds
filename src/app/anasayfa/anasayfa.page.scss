@@ -1,27 +1,21 @@
-
+/*
 ion-header ion-fab-button{
     width: 110px;
     --border-radius:28px;
     font-size: 16px;
 }
-#pie-chart-div{
-    margin-bottom: 40px;
-}
+*/
+#pie-chart-div{ margin-bottom: 40px; }
 
 @keyframes sefer_short{
-    from{
-        width: 110px;
-    }
-    to{
-        width: 56px;
-    }
+    from{ width: 110px; }
+    to  { width:  56px; }
 }
 
 .sefer_short{
 animation-name:sefer_short;
 animation-duration:0.5s;
 }
-
 
 #sefer_Fab_Bt{
     --background:white;     
@@ -33,3 +27,41 @@ animation-duration:0.5s;
     font-weight: 600;
     --color:#1e4485;
 }
+
+#sefer-istekleri_Bt{ --background: linear-gradient(0.70turn, #7fa3e0, #3267c5); }
+#sefer-istekleri_Bt:active{ --background: #b6b6b6; }
+
+.yolculuklarim_label{color: var(--color-primary)}
+
+#istatistik_card
+{
+    ion-card-header{
+        border-bottom: 1px solid #f1f1f1;
+        display: inline-grid; grid-template-columns: auto 1fr; width: 100%;
+    }
+    ion-icon{
+        font-size: 24px;
+        background: #f1f1f1;
+        padding: 3px;
+        border-radius: 50%;
+        color: var(--color-primary);
+        }
+        ion-card-title{
+            align-self: center; padding-right: 30px;
+        }
+        ion-item{
+            --padding-start: 8px;    
+            --border-color: #f1f1f1;
+            ion-col:nth-of-type(1){
+                color:#9a9a9a;
+            }
+            ion-col:nth-of-type(2){
+                color:var(--pers-list-subtitle);
+            }
+        }
+}
+// #istatistik_card:active{ border:1px solid var(--arac-list-subtitle); }
+#istatistik_card:active{
+    .yolculuklarim_label,ion-icon{ 
+        color:var(--pers-list-subtitle); }
+                    } 
