@@ -24,16 +24,18 @@ const routes: Routes = [
   declarations: [SeferEklePage]
 })
 
-export class SeferEklePageModule /* implements OnInit,AfterContentInit */{
+export class SeferEklePageModule /* implements OnInit,AfterContentInit */ {
   map;
   @ViewChild('mapElement') mapElement;
 
-  ngOnInit(): void{}
+  ngOnInit(): void { }
 
-/*   ngAfterContentInit() : void {
-    this.map = new google.maps.Map(
-      this.mapElement.nativeElement,{ center : {lat:-34.397, lng : 150.644}, zoom :8 });
-  }
- */
+  /*   ngAfterContentInit() : void {
+      this.map = new google.maps.Map(
+        this.mapElement.nativeElement,{ center : {lat:-34.397, lng : 150.644}, zoom :8 });
+    }
+   */
+
+  
 }
 

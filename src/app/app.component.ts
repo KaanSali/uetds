@@ -21,11 +21,11 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public helper: HelperService,
-    private lss:LocalStoreService,
+    private lss: LocalStoreService,
     public menulist: MenuList,
-    private router:Router,
+    private router: Router,
     private menu: MenuController,
-    private popoverController:PopoverController,
+    private popoverController: PopoverController,
     private theme: ThemeService
   ) {
     this.initializeApp();
@@ -37,6 +37,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
     await this.lss.loginsession.getItem('isLoggedin').then(async (value) => {
       if (value == true) {
         await this.lss.loginsession.getItem('username').then((value) => {
@@ -46,31 +47,44 @@ export class AppComponent {
         await this.lss.loginsession.getItem('password').then((value) => {
         }).catch((err) => {
           alert(err);
-        });        
+        });
         this.helper.isAuthenticated = true;
       }
-    })
-    if(this.helper.isAuthenticated){
-      this.menulist.loggedInMenu.push(this.menulist.Anasayfa);  
-      this.menulist.loggedInMenu.push(this.menulist.YolcuKaydi);      
-      this.menulist.loggedInMenu.push(this.menulist.PersonelListesi);   
+    });
+
+    await this.lss.loginsession.getItem('CUP').then((value: string) => {
+      this.helper.CurrentUserPic = value;
+    }).catch((err) => {
+      alert(err);
+    });
+
+    await this.lss.loginsession.getItem('CUN').then((value: string) => {
+      this.helper.CurrentUserName = value;
+    }).catch((err) => {
+      alert(err);
+    });
+
+    if (this.helper.isAuthenticated) {
+      this.menulist.loggedInMenu.push(this.menulist.Anasayfa);
+      // this.menulist.loggedInMenu.push(this.menulist.YolcuKaydi);
+      this.menulist.loggedInMenu.push(this.menulist.PersonelListesi);
       this.menulist.loggedInMenu.push(this.menulist.AracListesi);
       this.menulist.appPages = this.menulist.loggedInMenu;
-    }else{
+    } else {
       this.menulist.appPages = this.menulist.loggedOffMenu;
     }
-    //this.menulist.loadSubmenu(this.menulist.SirketListesiSubmenu);
+    // this.menulist.loadSubmenu(this.menulist.SirketListesiSubmenu);
     this.menulist.loggedInMenu.push(this.menulist.Ayarlar);
   }
 
-  logout(){
+  logout() {
     this.lss.loginsession.clear();
     this.menu.close();
-    this.helper.isAuthenticated= false;
+    this.helper.isAuthenticated = false;
     this.router.navigate(["/login"]);
-    this.menulist.appPages= this.menulist.loggedOffMenu;
+    this.menulist.appPages = this.menulist.loggedOffMenu;
   }
-  async popSirketler(ev : any){
+  async popSirketler(ev: any) {
     // const popSefer = await this.popoverController.create({
     //   component : PopoverComponent,
     //   event:ev,
@@ -80,8 +94,8 @@ export class AppComponent {
     this.menutype = "0";
   }
 
-/*   changeTheme(name) {
-    this.theme.setTheme(themes[name]);
-  } */
+  /*   changeTheme(name) {
+      this.theme.setTheme(themes[name]);
+    } */
 
 }

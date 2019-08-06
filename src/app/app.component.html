@@ -14,7 +14,7 @@
             <ion-col></ion-col>
             <ion-col col-auto style="text-align: center; font-size: 13.5pt;">
               <ion-avatar id="menu_profile_photo">
-                <img src="{{this.helper.SITE_URL}}{{this.helper.CurrentUserPic}}"/>
+                <img src="{{this.helper.SITE_URL}}{{this.helper.CurrentUserPic}}" />
               </ion-avatar>
               <ion-label>{{this.helper.CurrentUserName}}</ion-label>
             </ion-col>
@@ -31,21 +31,23 @@
               <!-- <ion-icon slot="end" *ngIf="p.isdropdown" name="arrow-dropdown"></ion-icon> -->
             </ion-item>
           </ion-menu-toggle>
-          <ion-item lines="none" [routerDirection]="'root'" [class]="[this.menulist.SirketListesi.style]" (click)="popSirketler()">
+          <!-- <ion-item lines="none" [routerDirection]="'root'" [class]="[this.menulist.SirketListesi.style]" (click)="popSirketler()">
             <ion-icon mode="ios" slot="start" [name]="this.menulist.SirketListesi.icon"></ion-icon>
             <ion-label>
               {{this.menulist.SirketListesi.title}}
+            </ion-label> -->
+          <!-- <ion-icon slot="end" *ngIf="p.isdropdown" name="arrow-dropdown"></ion-icon> -->
+<!--           </ion-item>-->          
+            <ion-item lines="none" [routerDirection]="'root'" [class]="[this.menulist.CikisYap.style]" (click)="logout()"
+            *ngIf="this.helper.isAuthenticated">
+            <ion-icon mode="ios" slot="start" [name]="this.menulist.CikisYap.icon" [mode]="this.menulist.CikisYap.mode">
+            </ion-icon>
+            <ion-label>
+              {{this.menulist.CikisYap.title}}
             </ion-label>
-            <!-- <ion-icon slot="end" *ngIf="p.isdropdown" name="arrow-dropdown"></ion-icon> -->
           </ion-item>
-          <ion-item lines="none" [routerDirection]="'root'" [class]="[this.menulist.CikisYap.style]" (click)="logout()" *ngIf="this.helper.isAuthenticated">
-              <ion-icon mode="ios" slot="start" [name]="this.menulist.CikisYap.icon" [mode]="this.menulist.CikisYap.mode"></ion-icon>
-              <ion-label>
-                {{this.menulist.CikisYap.title}}
-              </ion-label>
-            </ion-item>
-          </ion-list>
-        </ion-content>
+        </ion-list>
+      </ion-content>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>
   </ion-split-pane>

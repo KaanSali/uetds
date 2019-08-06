@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Şirket Ekle</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +15,8 @@
   <ion-item>
     <ion-label position="stacked">Yetkilisi</ion-label>
     <ion-select [(ngModel)]="Sirket.Yetkili">
-      <ion-select-option *ngFor="let yetkili of YetkiliList" [value]=yetkili>{{yetkili.PersonalInfo.Ad}} {{yetkili.PersonalInfo.Soyad}}</ion-select-option>
+      <ion-select-option *ngFor="let yetkili of YetkiliList" [value]=yetkili>{{yetkili.PersonalInfo.Ad}}
+        {{yetkili.PersonalInfo.Soyad}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
@@ -57,7 +58,7 @@
   </ion-item>
   <ion-item>
     <ion-label position="stacked">Iban Numarası</ion-label>
-    <ion-input [(ngModel)]="Sirket.IBanNo"></ion-input>
+    <ion-input [(ngModel)]="Sirket.IbanNo"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="stacked">Seyahat Acentesi Ünvanı</ion-label>

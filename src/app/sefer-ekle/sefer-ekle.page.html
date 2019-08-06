@@ -1,26 +1,30 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-fab-button class="Back_Bt" vertical="center" horizontal="start" (click)="closeModal()">
-            <ion-icon name="arrow-back" size="small"></ion-icon> 
-          </ion-fab-button>
-        </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-fab-button class="Back_Bt" vertical="center" horizontal="start" (click)="closeModal()">
+        <ion-icon name="arrow-back" size="small"></ion-icon>
+      </ion-fab-button>
+    </ion-buttons>
     <ion-title>Sefer Ekle</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding id="sefer-ekle_content">
   <div #mapElement class="map"></div>
-  <form #myForm="ngForm" (ngSubmit)="this.KayitOl()">
+  <form #myForm="ngForm">
     <div>
       <ion-item lines="none">
         <ion-label position="stacked">Kalkış Noktası</ion-label>
-        <ion-input name="kalkis" required><ion-icon name="pin"></ion-icon></ion-input>
+        <ion-input name="kalkis" required>
+          <ion-icon name="pin"></ion-icon>
+        </ion-input>
       </ion-item>
 
       <ion-item lines="none">
         <ion-label position="stacked">Varış Noktası</ion-label>
-        <ion-input name="varis" required><ion-icon name="flag"></ion-icon></ion-input>
+        <ion-input name="varis" required>
+          <ion-icon name="flag"></ion-icon>
+        </ion-input>
       </ion-item>
 
       <!--       
@@ -31,8 +35,8 @@
       -->
 
       <ion-item lines="none">
-          <ion-label position="stacked">Kalkış Saati</ion-label>
-          <ion-datetime display-format="hh:mm" minute-values="0,15,30,45" placeholder="Saat Seçiniz"></ion-datetime>
+        <ion-label position="stacked">Kalkış Saati</ion-label>
+        <ion-datetime display-format="hh:mm" minute-values="0,15,30,45" placeholder="Saat Seçiniz"></ion-datetime>
       </ion-item>
 
       <!--  
@@ -43,9 +47,10 @@
       -->
 
       <ion-item lines="none">
-          <ion-label position="stacked">Sefer Tarihi</ion-label>
-          <ion-datetime display-format="D MMMM YYYY" min="2019" placeholder="Tarih Seçiniz"
-          month-names="Ocak, Şubat, Mart, Nisan, Mayıs, Haziran, Temmuz, Ağustos, Eylül, Ekim, Kasım, Aralık"></ion-datetime>
+        <ion-label position="stacked">Sefer Tarihi</ion-label>
+        <ion-datetime display-format="D MMMM YYYY" min="2019" placeholder="Tarih Seçiniz"
+          month-names="Ocak, Şubat, Mart, Nisan, Mayıs, Haziran, Temmuz, Ağustos, Eylül, Ekim, Kasım, Aralık">
+        </ion-datetime>
       </ion-item>
 
       <!--       
@@ -56,11 +61,12 @@
       -->
 
       <ion-item lines="none">
-          <ion-label position="stacked">Şoför</ion-label>
-          <ion-select id="customActionSheetSelect" interface="action-sheet" placeholder="Şoför Seçiniz">
-            <ion-select-option value="{{Personel.PersonalInfo.Ad}}{{Personel.PersonalInfo.Soyad}}" *ngFor="let Personel of Personels">
-              {{Personel.PersonalInfo.Ad}} {{Personel.PersonalInfo.Soyad}}</ion-select-option>
-          </ion-select>
+        <ion-label position="stacked">Şoför</ion-label>
+        <ion-select id="customActionSheetSelect" interface="action-sheet" placeholder="Şoför Seçiniz">
+          <ion-select-option value="{{Personel.PersonalInfo.Ad}}{{Personel.PersonalInfo.Soyad}}"
+            *ngFor="let Personel of Personels">
+            {{Personel.PersonalInfo.Ad}} {{Personel.PersonalInfo.Soyad}}</ion-select-option>
+        </ion-select>
       </ion-item>
 
       <!--       
@@ -71,15 +77,16 @@
       -->
 
       <ion-item lines="none">
-          <ion-label position="stacked">Araç</ion-label>
-          <ion-select id="customActionSheetSelect" interface="action-sheet" placeholder="Araç Seçiniz">
-            <ion-select-option value="{{Arac.AracInfo.Plaka}}" *ngFor="let Arac of Araclar">
-                {{Arac.AracInfo.Marka}} {{Arac.AracInfo.Model}}</ion-select-option>
-          </ion-select>
+        <ion-label position="stacked">Araç</ion-label>
+        <ion-select id="customActionSheetSelect" interface="action-sheet" placeholder="Araç Seçiniz">
+          <ion-select-option value="{{Arac.AracInfo.Plaka}}" *ngFor="let Arac of Araclar">
+            {{Arac.AracInfo.Marka}} {{Arac.AracInfo.Model}}</ion-select-option>
+        </ion-select>
       </ion-item>
 
-      <ion-button class="Save_Bt" [disabled]="!myForm.form.valid" type="submit" expand="block" name="submit">Kaydet</ion-button>
-    
+      <ion-button class="Save_Bt" [disabled]="!myForm.form.valid" type="submit" expand="block" name="submit">Kaydet
+      </ion-button>
+
     </div>
   </form>
 </ion-content>
