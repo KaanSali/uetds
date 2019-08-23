@@ -132,7 +132,7 @@ class AracInfo{
 	Yili:number= 2010;
 }
 
-class AracOzellikleri{
+export class AracOzellikleri{
 	Buzdolabi:boolean = false;
 	Klima:boolean = false;
 	TV:boolean = false;

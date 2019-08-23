@@ -3,6 +3,7 @@ import { Arac } from 'src/models/Interfaces';
 import { HelperService } from 'src/services/helper.service';
 import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
 import { ApiModel } from 'src/services/api/api.model';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-arac-kayit',
@@ -13,7 +14,7 @@ export class AracKayitPage implements OnInit {
   Arac:Arac = new Arac();
   AracKeys= Object.keys(this.Arac.AracOzellikleri);
   AracOzellikleri:string[] = [];
-  constructor(public helper:HelperService,public camera:Camera,public apimodel:ApiModel) { }
+  constructor(public helper:HelperService,public camera:Camera,public toastController: ToastController,public apimodel:ApiModel) { }
 
   ngOnInit() {
 
@@ -29,14 +30,25 @@ export class AracKayitPage implements OnInit {
     })
   }
   AracKaydet(){
-    if(this.Arac.AracFotograflari.Arka !="" || this.Arac.AracFotograflari.IcMekan != "" || this.Arac.AracFotograflari.On != "" || this.Arac.AracFotograflari.Ruhsat != "" || this.Arac.AracFotograflari.Sag != "" || this.Arac.AracFotograflari.SigortaPolice != "" || this.Arac.AracFotograflari.Sol != ""){
+    if(this.Arac.AracFotograflari.Arka !="" || this.Arac.AracFotograflari.IcMekan != "" || this.Arac.AracFotograflari.On != "" || this.Arac.AracFotograflari.Ruhsat != "" || this.Arac.AracFotograflari.Sag != "" || this.Arac.AracFotograflari.SigortaPolice != "" || this.Arac.AracFotograflari.Sol != "")
+    {
     this.AracOzellikleri.forEach(element => {
       this.Arac.AracOzellikleri[element] =true;
     })
-    this.apimodel.addArac(this.Arac).subscribe((data =>{
-      alert(JSON.stringify(data));
-    }), (error) => {
-      alert(JSON.stringify(error));
+    this.apimodel.addArac(this.Arac).subscribe((async data =>{
+        const toast = await this.toastController.create({
+          message: data,
+          duration: 2000,
+          color: "primary"
+        });
+        toast.present();
+    }), async (error) => {
+        const toast = await this.toastController.create({
+          message: error,
+          duration: 2000,
+          color: "warning"
+        });
+        toast.present();
       });
   }else{
     alert("Fotoğraflar Boş Bırakılamaz");

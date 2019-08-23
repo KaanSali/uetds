@@ -1,5 +1,5 @@
 import { Component, Input} from '@angular/core';
-import { NavParams, ModalController } from '@ionic/angular'
+import { NavParams, ModalController, ToastController } from '@ionic/angular'
 import { Personel, YoneticiRole, SoforRole } from '../../models/Interfaces';
 import { ApiModel } from 'src/services/api/api.model';
 import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
@@ -19,7 +19,7 @@ export class PersonelBilgileriPage {
     sourceType:0,
     allowEdit:true
   }
-  constructor(public navParams: NavParams,private modal: ModalController,public apimodel:ApiModel,public camera:Camera,public helper:HelperService) { }
+  constructor(public navParams: NavParams,private modal: ModalController,public toastController:ToastController,public apimodel:ApiModel,public camera:Camera,public helper:HelperService) { }
   
 
   ionViewWillEnter() {
@@ -42,10 +42,20 @@ export class PersonelBilgileriPage {
       this.Personel.Role = new SoforRole();
       break;
     }
-    this.apimodel.updPersonel(this.Personel).subscribe((data =>{
-      alert(data);
-    }), (error) => {
-      alert(JSON.stringify(error));
+    this.apimodel.updPersonel(this.Personel).subscribe((async data =>{
+      const toast = await this.toastController.create({
+        message: data,
+        duration: 2000,
+        color: "primary"
+      });
+      toast.present();
+  }), async (error) => {
+      const toast = await this.toastController.create({
+        message: error,
+        duration: 2000,
+        color: "warning"
+      });
+      toast.present();
       });
   }else{
     alert("Fotoğraflar boş bırakılamaz");

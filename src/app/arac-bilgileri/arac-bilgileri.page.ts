@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Arac } from 'src/models/Interfaces';
-import { NavParams, ModalController } from '@ionic/angular';
+import { Arac, AracOzellikleri } from 'src/models/Interfaces';
+import { NavParams, ModalController, ToastController } from '@ionic/angular';
 import { ApiModel } from 'src/services/api/api.model';
 import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
 import { HelperService } from 'src/services/helper.service';
@@ -16,7 +16,7 @@ export class AracBilgileriPage {
   plaka:string;
   AracOzellikleri:string[] = [];
 
-  constructor(public navParams: NavParams,private modal: ModalController,public apimodel:ApiModel,public camera:Camera,public helper:HelperService) { }
+  constructor(public navParams: NavParams,private modal: ModalController,public toastController: ToastController,public apimodel:ApiModel,public camera:Camera,public helper:HelperService) { }
 
   changeImage(imageHolder:HTMLIonImgElement,photoVar:string){
     this.camera.getPicture(this.helper.cameraOptions).then((imageData)=>{
@@ -28,17 +28,22 @@ export class AracBilgileriPage {
     })
   }
 
-  ionViewWillEnter() {
-    this.Arac = this.navParams.get('Arac');
-    this.plaka = this.Arac.AracInfo.Plaka;
-    var a = Object.values(this.Arac.AracOzellikleri);
-    var i = 0;
-    a.forEach((element) => {
-      if(element == true){
-        this.AracOzellikleri.push(Object.keys(this.Arac.AracOzellikleri)[i]);
-      }
-      i++;
+  async ionViewWillEnter() {
+    let loadProperties = new Promise((resolve,reject) => {
+      this.Arac = this.navParams.get('Arac');
+      this.plaka = this.Arac.AracInfo.Plaka;
+      var a = Object.values(this.Arac.AracOzellikleri);
+      var i = 0;
+      a.forEach((element) => {
+        if(element == true){
+          this.AracOzellikleri.push(Object.keys(this.Arac.AracOzellikleri)[i]);
+        }
+        i++;
+      })
+      resolve();
+
     })
+    await loadProperties;
   }
   closeModal(){
     this.modal.dismiss();
@@ -46,11 +51,17 @@ export class AracBilgileriPage {
 
   aracGuncelle(){
     if(this.Arac.AracFotograflari.Arka !="" || this.Arac.AracFotograflari.IcMekan != "" || this.Arac.AracFotograflari.On != "" || this.Arac.AracFotograflari.Ruhsat != "" || this.Arac.AracFotograflari.Sag != "" || this.Arac.AracFotograflari.SigortaPolice != "" || this.Arac.AracFotograflari.Sol != ""){
+      this.Arac.AracOzellikleri = new AracOzellikleri();
       this.AracOzellikleri.forEach(element => {
         this.Arac.AracOzellikleri[element] =true;
       })
-    this.apimodel.updArac(this.Arac).subscribe((data=>{
-      alert(data);
+    this.apimodel.updArac(this.Arac).subscribe((async data=>{
+      const toast = await this.toastController.create({
+        message: data,
+        duration: 2000,
+        color: "primary"
+      });
+      toast.present();
     }),(error => {
       console.log(error);
     }));

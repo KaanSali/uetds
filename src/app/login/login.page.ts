@@ -81,7 +81,12 @@ export class LoginPage {
         this.menulist.appPages = this.menulist.loggedInMenu;
         this.router.navigate(['/anasayfa']);
       }
-    }), (error => {
+    }), (async error => {
+      const toast1 = await this.toastController.create({
+        message: error["statusText"],
+        duration: 2000
+      });
+      toast1.present();
       alert(JSON.stringify(error));
     })
 

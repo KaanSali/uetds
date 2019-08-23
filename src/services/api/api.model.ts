@@ -54,7 +54,7 @@ export class ApiModel {
   }
 
   updPersonel(PersonelData: Personel) {
-    return this.apiService.updateMethods(this.helper.SITE_URL + "api/Personel/UpdatePersonel", PersonelData)
+    return this.apiService.postMethods(this.helper.SITE_URL + "api/Personel/UpdatePersonel", PersonelData)
       .pipe(
         map(res => {
           let _res: any = res;
@@ -97,7 +97,7 @@ export class ApiModel {
       );
   }
   updArac(Arac: Arac) {
-    return this.apiService.updateMethods(this.helper.SITE_URL + "api/Arac/UpdateArac", Arac)
+    return this.apiService.postMethods(this.helper.SITE_URL + "api/Arac/UpdateArac", Arac)
       .pipe(
         map(res => {
           let _res: any = res;
@@ -131,7 +131,7 @@ export class ApiModel {
   }
 
   updSirket(SirketData : Sirket){
-    return this.apiService.updateMethods(this.helper.SITE_URL + "api/Company/UpdateCompany", SirketData)
+    return this.apiService.postMethods(this.helper.SITE_URL + "api/Company/UpdateCompany", SirketData)
       .pipe(
         map(res => {
           let _res: any = res;

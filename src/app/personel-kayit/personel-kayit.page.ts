@@ -4,6 +4,7 @@ import { Personel } from 'src/models/Interfaces';
 import { HelperService } from 'src/services/helper.service';
 import { Camera,CameraOptions } from '@ionic-native/camera/ngx'
 import { Validators } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-personel-kayit',
@@ -12,7 +13,7 @@ import { Validators } from '@angular/forms';
 })
 export class PersonelKayitPage implements OnInit {
 
-  constructor(public apimodel:ApiModel, public renderer: Renderer2,public helper:HelperService,public camera:Camera) { }
+  constructor(public apimodel:ApiModel, public renderer: Renderer2,public toastController:ToastController,public helper:HelperService,public camera:Camera) { }
 
   Personel:Personel=new Personel();
   RoleString:string;
@@ -23,10 +24,20 @@ export class PersonelKayitPage implements OnInit {
 
   KayitOl(){
      if(this.Personel.PersonelFotograflari.Ehliyet != "" || this.Personel.PersonelFotograflari.ProfilFoto != "" || this.Personel.PersonelFotograflari.Psikoteknik != "" || this.Personel.PersonelFotograflari.SabikaKaydi != "" || this.Personel.PersonelFotograflari.SrcBelgesi != ""){
-     this.apimodel.addPersonel(this.Personel).subscribe((data =>{
-       alert(data);
-     }), (error) => {
-       alert(JSON.stringify(error));
+     this.apimodel.addPersonel(this.Personel).subscribe((async data =>{
+      const toast = await this.toastController.create({
+        message: data,
+        duration: 2000,
+        color: "primary"
+      });
+      toast.present();
+  }), async (error) => {
+      const toast = await this.toastController.create({
+        message: error,
+        duration: 2000,
+        color: "warning"
+      });
+      toast.present();
        });
     
    }else{
