@@ -58,8 +58,7 @@ export class AracBilgileriPage {
     this.apimodel.updArac(this.Arac).subscribe((async data=>{
       const toast = await this.toastController.create({
         message: data,
-        duration: 2000,
-        color: "primary"
+        duration: 2000
       });
       toast.present();
     }),(error => {

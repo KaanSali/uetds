@@ -45,16 +45,14 @@ export class PersonelBilgileriPage {
     this.apimodel.updPersonel(this.Personel).subscribe((async data =>{
       const toast = await this.toastController.create({
         message: data,
-        duration: 2000,
-        color: "primary"
+        duration: 2000
       });
       toast.present();
   }), async (error) => {
       const toast = await this.toastController.create({
         message: error,
-        duration: 2000,
-        color: "warning"
-      });
+        duration: 2000
+        });
       toast.present();
       });
   }else{
