@@ -50,7 +50,7 @@ export class PersonelBilgileriPage {
       toast.present();
   }), async (error) => {
       const toast = await this.toastController.create({
-        message: error,
+        message: error["Message"],
         duration: 2000
         });
       toast.present();
@@ -60,7 +60,7 @@ export class PersonelBilgileriPage {
   }
   }
   changeImage(imageHolder:HTMLIonImgElement,photoVar:string){
-    this.camera.getPicture(this.cameraOptions).then((imageData)=>{
+    this.camera.getPicture(this.helper.cameraOptions).then((imageData)=>{
       let base64Image = 'data:image/jpeg;base64,' + imageData;
      imageHolder.src = base64Image;
      this.Personel['PersonelFotograflari'][photoVar] = imageData;
